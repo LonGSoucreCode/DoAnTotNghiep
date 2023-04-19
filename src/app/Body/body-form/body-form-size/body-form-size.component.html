@@ -1,0 +1,3 @@
+<ul class="size_submenu" [class.hideflex]="check">
+  <li *ngFor="let size of SizeList" [class.border]="CheckSize[size.size_id]" (click)="ClickSize(size.size_id,CheckSize[size.size_id])">{{size.size_Number}}</li>
+</ul>

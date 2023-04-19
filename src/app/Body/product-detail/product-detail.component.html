@@ -1,0 +1,159 @@
+<div class="Form">
+  <div class="Content__Form">
+    <div class="card__Detail">
+      <div class="Left__Card__Detail">
+        <div class="Card__Detail__Imgae">
+          <img src="{{ image.image_Product_Main }}" alt="" />
+        </div>
+        <div class="Card__Detail__Imgae">
+          <img src="{{ image.image_Product_Detail }}" alt="" />
+        </div>
+        <div class="Card__Detail__Imgae">
+          <img src="{{ image.image_Product_Ass }}" alt="" />
+        </div>
+        <div class="Card__Detail__Imgae">
+          <img src="{{ image.image_Product_Cond }}" alt="" />
+        </div>
+      </div>
+      <div class="Right__card__Detail">
+        <div class="card__content__Detail">
+          <div class="card__season__Detail">New Season</div>
+          <div class="card__Brand__Detail">{{ Nsx.nsx_Name }}</div>
+          <div class="card__Name__Detail">{{ product.product_Name }}</div>
+          <div class="card__Price__Detail">{{ Price }}</div>
+          <div class="card__size__guide">Size Guide</div>
+          <app-product-detail-size
+            [idProduct]="WishListProduct.product_id"
+            [size]="WishListProduct.size_id"
+            (newItemEvent)="Onclick($event)"
+          ></app-product-detail-size>
+        </div>
+        <div class="card__action__Detail">
+          <button
+            class="btn__BuyNow__Detail"
+            (click)="AddBag(BagButton.paraphrase)"
+          >
+            {{ BagButton.paraphrase }}
+          </button>
+          <button
+            class="btn__Cancel__Detail"
+            (click)="IConClick()"
+            (mouseleave)="IConChange()"
+            (mouseenter)="IConChange()"
+          >
+            <p>Wishlist</p>
+            <div class="WishList__icon__Heart">
+              <div class="WishList__icon__Heart__Hover">
+                <i class="bx bxs-heart" [class.icon_hover]="IconCheck[0]"></i>
+                <i class="bx bx-heart" [class.icon_hover]="IconCheck[1]"></i>
+              </div>
+            </div>
+          </button>
+        </div>
+        <div class="Card__Delivery">
+          <p>ESTIMATED DELIVERY</p>
+          <p>Feb 24 - Mar 7</p>
+        </div>
+      </div>
+    </div>
+    <div class="card__Story">
+      <div class="DetailAndDelivery">
+        <div
+          class="Card__Story__Main"
+          [class.ColorBlack]="DetailDelivery[0]"
+          (click)="ChangeDetailAndDeliverry(0)"
+        >
+          THE DETAILS
+        </div>
+        <div
+          class="Card__Story__Main"
+          [class.ColorBlack]="DetailDelivery[1]"
+          (click)="ChangeDetailAndDeliverry(1)"
+        >
+          DELIVERY & RETURNS
+        </div>
+      </div>
+      <div class="card__Story__TheDetails__Hover">
+        <div class="card__Story__TheDetails" *ngIf="DetailDelivery[2] == true">
+          <div class="CardStory__Detail__Title">
+            <div class="card__season__Detail Detail">New Season</div>
+            <div class="card__Brand__Detail">Jordan</div>
+            <div class="card__Name__Detail">{{ product.product_Name }}</div>
+            <div class="card__Story__Detail">{{ product.product_Story }}</div>
+            <div class="card__Highlight__Detail">
+              <p class="Main__Highlight">Highlights</p>
+              <ul>
+                <li>
+                  These styles are supplied by a premium sneaker marketplace.
+                  Stocking only the most sought-after footwear, they source and
+                  curate some of the most hard to find sneakers from around the
+                  world.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="CardStory__Detail__Title Composition">
+            <p class="bold">Composition</p>
+            <p>Sole: Rubber 100%</p>
+            <p>Outer: Leather 100%</p>
+            <p>Lining: Polyester 100%</p>
+            <p class="margin_20 bold">Product IDs</p>
+            <p>ID: {{ product.product_id }}</p>
+            <p>Brand style ID: {{ product.brand_id }}</p>
+          </div>
+          <div class="CardStory__Detail__Title Card__Detail__Imgae">
+            <img src="{{ image.image_Product_Cond }}" alt="" />
+          </div>
+        </div>
+        <div class="card__Story__TheDetails" *ngIf="DetailDelivery[2] == false">
+          <div class="CardStory__Detail__Title Detail">
+            <p class="bold margin_bot_20">We've got your back</p>
+            <ul>
+              <li>
+                One delivery fee to most locations (check our Orders & Delivery
+                page)
+              </li>
+              <li>
+                Free returns within 14 days (excludes final sale and
+                made-to-order items, face masks and certain beauty products
+                containing hazardous or flammable materials, such as fragrances
+                and aerosols)
+              </li>
+              <li>All our deliveries are climate conscious</li>
+            </ul>
+            <p class="bold margin_bot_20 margin_top_20">
+              Import duties information
+            </p>
+            <p>Let us handle the legwork.</p>
+            <p>
+              Delivery duties are included in the item price when shipping to
+              all EU countries (excluding the Canary Islands), plus The United
+              Kingdom, USA, Canada, China Mainland, Australia, New Zealand,
+              Puerto Rico, Switzerland, Singapore, Republic Of Korea, Kuwait,
+              Mexico, Qatar, India, Norway, Saudi Arabia, Taiwan Region,
+              Thailand, U.A.E., Japan, Brazil, Isle of Man, San Marino,
+              Colombia, Chile, Argentina, Egypt, Lebanon, Hong Kong SAR and
+              Bahrain and Turkey. All import duties are included in your order –
+              the price you see is the price you pay.
+            </p>
+          </div>
+          <div class="CardStory__Detail__Title Composition">
+            <p class="bold">Estimated delivery</p>
+            <p class="">Express: Feb 24 - Mar 7</p>
+            <p>Sending from our marketplace seller in United States</p>
+          </div>
+          <div class="CardStory__Detail__Title Detail">
+            <p class="bold margin_bot_20">Need more information?</p>
+            <ul>
+              <li><a href="">Orders & delivery</a></li>
+              <li><a href="">Returns & refunds</a></li>
+              <li><a href="">Duties & taxes</a></li>
+              <li><a href="">Climate Conscious delivery</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-contact-form></app-contact-form>

@@ -1,0 +1,234 @@
+.Content__Form {
+  width: 100%;
+}
+.Content__Form .card__Detail {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  padding: 20px;
+}
+.Left__Card__Detail {
+  display: flex;
+  width: 67%;
+  flex-wrap: wrap;
+}
+.Card__Detail__Imgae {
+  width: 50%;
+}
+
+.Card__Detail__Imgae img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  padding: 10px;
+  display: block;
+}
+
+.Right__card__Detail {
+  height: 100%;
+  width: 33%;
+  padding-left: 25px;
+  font-size: 20px;
+  top: 180px;
+  position: sticky;
+  align-self: flex-start;
+}
+.card__content__Detail {
+  width: 100%;
+  position: relative;
+}
+.card__season__Detail {
+  color: #727272;
+  font-size: 14px;
+}
+.card__Brand__Detail {
+  font-size: 20px;
+  font-weight: 650;
+}
+.card__Name__Detail {
+  font-size: 15px;
+  color: #2d2d2d;
+}
+.card__Price__Detail {
+  padding: 40px 0;
+}
+.card__size__guide {
+  font-size: 14px;
+  color: #2d2d2d;
+  text-decoration: underline;
+  margin-bottom: 25px;
+  text-align: right;
+  transition: 0.2s;
+}
+.card__size__guide:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.card__action__Detail {
+  height: 41px;
+  display: flex;
+  margin-top: 12px;
+}
+.card__action__Detail button {
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.2s ease;
+  border-radius: 10px;
+  opacity: 0.9;
+}
+.btn__BuyNow__Detail {
+  outline: none;
+  border: none;
+  background-color: #000;
+  color: white;
+  width: 70%;
+}
+.btn__BuyNow__Detail:hover {
+  cursor: pointer;
+  opacity: 0.6 !important;
+}
+.btn__Cancel__Detail {
+  width: 30%;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  margin-left: 10px;
+  display: flex;
+  border: 0.5px solid black;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 17px;
+  transition: all linear 0.2s;
+}
+.btn__Cancel__Detail:hover{
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.Card__Delivery {
+  color: #222;
+  font-size: 15px;
+  opacity: 0.9;
+  margin-top: 20px;
+}
+
+.DetailAndDelivery {
+  margin-top: 100px;
+  display: flex;
+  border-bottom: 1px #e6e6e6 solid;
+  margin-left: 20px;
+}
+.Card__Story__Main {
+  margin-right: 30px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.card__Story__TheDetails__Hover{
+  width: 100%;
+  position: relative;
+}
+.card__Story__TheDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+.CardStory__Detail__Title {
+  width: 31%;
+  /* border: solid 1px ; */
+}
+.Detail {
+  font-size: 14.5px;
+  color: #2d2d2d;
+}
+.Detail a {
+  font-size: 14.5px;
+  color: black !important;
+  transition: 0.2s;
+}
+.Detail a:hover {
+  opacity: 0.5;
+}
+.Composition {
+  font-size: 15px;
+  line-height: 2;
+  padding-left: 13px;
+}
+.Composition p {
+  color: #2d2d2d;
+}
+.margin_bot_20 {
+  margin-bottom: 15px;
+}
+.margin_top_20 {
+  margin-top: 15px;
+}
+.card__Story__Detail {
+  font-size: 15px;
+  color: #2d2d2d;
+  margin: 25px 0;
+}
+.Main__Highlight {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.card__Highlight__Detail ul,
+.Detail ul {
+  margin-left: 15px;
+}
+.card__Highlight__Detail li,
+.Detail li {
+  font-size: 14.5px;
+  color: #2d2d2d;
+  list-style-type: square;
+  list-style-position: outside;
+}
+.CardStoryHover{
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 1;
+}
+.CardStoryHoverShow{
+  opacity: 1;
+}
+.ColorBlack{
+  opacity: 1;
+  border-bottom: #000 solid 1.5px;
+}
+.WishList__icon__Heart,
+.WishList__icon__Close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  border-radius: 7px;
+  transition: all linear 0.1s;
+  z-index: 1;
+}
+.WishList__icon__Heart__Hover{
+  overflow: hidden;
+  height: 25px;
+  width: 25px;
+  position: relative;
+}
+.WishList__icon__Heart:hover {
+  background: #f5f5f5;
+}
+.WishList__icon__Heart__Hover i {
+  font-size: 25px;
+  margin: auto;
+  transition: all linear 0.2s;
+  opacity: 0;
+}
+.icon_hover{
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 1 !important;
+  transition: all ease-in 0.1s;
+  z-index: 2;
+}
+.block{
+  display: block;
+}

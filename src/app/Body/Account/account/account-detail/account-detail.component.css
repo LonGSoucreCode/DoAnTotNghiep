@@ -1,0 +1,28 @@
+/* .MainContent__Detail {
+  height: 11%;
+} */
+.Right__Account__Title {
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+.Right__Detail {
+  font-size: 16px;
+  display: flex;
+}
+.Right__Detail ul {
+  list-style-type: none;
+  line-height: 2;
+}
+.Right__Detail li {
+  display: flex;
+}
+.Right__Detail h5 {
+  padding-right: 150px;
+}
+
+h3 {
+  font-weight: 500;
+}
+p {
+  font-size: 13px;
+}

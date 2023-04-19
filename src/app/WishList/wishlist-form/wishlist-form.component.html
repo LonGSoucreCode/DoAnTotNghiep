@@ -1,0 +1,79 @@
+<div class="Form">
+  <div class="WishListForm">
+    <div class="WishList__Tittle">
+      <h1>WISHLIST</h1>
+      <p>{{ WishListCount }} Item</p>
+      <div *ngIf="WishListCount <= 0">
+        <p>{{ Paragraph }}</p>
+        <button
+          class="buynow__Form__WishList"
+          [routerLink]="['']"
+          *ngIf="ParagraphButton == 'Shop Now'"
+        >
+          {{ ParagraphButton }}
+        </button>
+        <button
+          class="buynow__Form__WishList"
+          (click)="LoginShow()"
+          *ngIf="ParagraphButton == 'Sign In'"
+        >
+          {{ ParagraphButton }}
+        </button>
+      </div>
+    </div>
+    <div
+      class="all__Card"
+      [class.juscontent]="JuscontentCheck"
+      *ngIf="WishListProduct.length > 0"
+    >
+      <div
+        class="card__Form"
+        [class.none]="check[product.id]"
+        [class.opacity]="checkopacity[product.id]"
+        *ngFor="let product of ListProduct"
+      >
+        <div class="Card__Top">
+          <app-icon-product
+            [id]="product.product_id"
+            [icon]="icon"
+            [size]="product.size_id"
+            (click)="Count(product.id)"
+          ></app-icon-product>
+          <app-image-product
+            [id]="product.image_Product_id"
+            (click)="
+              Router(product.product_Name, product.product_id, product.size_id)
+            "
+          ></app-image-product>
+        </div>
+        <div class="Card__Bottom__WishList">
+          <div
+            (click)="
+              Router(product.product_Name, product.product_id, product.size_id)
+            "
+          >
+            <app-brand [id]="product.brand_id"></app-brand>
+            <div class="card__Name__Form">
+              {{ product.product_Name }}
+            </div>
+            <app-wishlist-form-price
+              [price]="product.product_Price"
+              [sizeid]="product.size_id"
+              [productid]="product.product_id"
+            ></app-wishlist-form-price>
+          </div>
+          <app-wishlist-form-size
+            [idproduct]="product.product_id"
+            [size]="product.size_id"
+            (newItemEvent)="Onclick($event)"
+          ></app-wishlist-form-size>
+          <app-wishlist-form-bag
+            [sizeid]="product.size_id"
+            [productid]="product.product_id"
+          ></app-wishlist-form-bag>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-contact-form></app-contact-form>

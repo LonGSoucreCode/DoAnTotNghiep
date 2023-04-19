@@ -1,0 +1,80 @@
+.card__Size__Detail {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #727272;
+  padding: 10px 15px;
+  border: #727272 solid 1px;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+}
+.card__Size__Detail p{
+  font-size: 15px;
+}
+.card__Size__Detail i {
+  font-size: 20px;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all linear 0.2s;
+}
+.card__Size__Detail__Hover {
+  display: none;
+  width: 100%;
+  color: #222;
+  background-color: white;
+  z-index: 1;
+  padding-bottom: 20px;
+  border: #727272 solid 1px;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+}
+.card__Size__Detail__Hover ul {
+  list-style: none;
+}
+.card__Size__Detail__Hover li {
+  transition: all linear 0.1s;
+  cursor: pointer;
+}
+.card__Size__Detail__Hover li:hover {
+  background-color: #eee;
+}
+.Card__Size__Title {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  padding: 10px 15px;
+  justify-content: space-between;
+}
+.Card__Size__Title p {
+  font-size: 12.5px;
+}
+
+.Card__Size__Number {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  align-items: flex-end;
+  font-weight: bold;
+}
+.Card__Size__Number p{
+  font-weight: normal;
+  font-size: 13px;
+}
+.Last__Size {
+  text-align: right;
+  width: 50%;
+  font-size: 12.5px;
+}
+.tranform {
+  transform: rotate(-180deg);
+}
+.block {
+  display: block;
+}
+.BorderBottomNone {
+  border-bottom: none;
+}

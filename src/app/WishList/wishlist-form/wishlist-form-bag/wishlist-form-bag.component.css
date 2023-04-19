@@ -1,0 +1,31 @@
+
+.buynow__Form {
+  width: 100%;
+  background: white;
+  height: 45px;
+  border: #222 solid 1px;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.InYourBag{
+  transition: all linear 0.2s;
+  background: #222;
+}
+.InYourBag a{
+  color: white !important;
+}
+.InYourBag:hover {
+  background: #222 !important;
+  opacity: 0.5 !important;
+}
+.buynow__Form a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+}
+.buynow__Form:hover {
+  background-color: #f5f5f5;
+}

@@ -1,0 +1,27 @@
+<div class="Card__Top">
+  <!-- <app-icon-product [id]="Product.product_id"></app-icon-product> -->
+  <!-- <app-image-product
+    [id]="Product.image_Product_id"
+    [routerLink]="['product/', Product.product_Name, Product.product_id]"
+  ></app-image-product> -->
+</div>
+<div class="Card__Bottom__WishList">
+  <app-brand [id]="Product.brand_id"></app-brand>
+  <div class="card__Name__Form">{{ Product.product_Name }}</div>
+  <div class="card__price__Form">{{ Product.product_Price }}</div>
+  <div class="card__Size__Card">
+    <select name="" class="Size__Shoes__Card" id="ValueSizes">
+      <option value="null" class="Size__option__Card selected=”selected”">
+        Select Size
+      </option>
+      <option value="6" class="Size__option__Card">6</option>
+      <option value="7" class="Size__option__Card">7</option>
+      <option value="8" class="Size__option__Card">8</option>
+      <option value="9" class="Size__option__Card">9</option>
+    </select>
+  </div>
+  <button class="buynow__Form AddToBag"><a>Add To Bag</a></button>
+  <button class="buynow__Form InYourBag">
+    <a href="">In Your Bag</a>
+  </button>
+</div>

@@ -1,0 +1,25 @@
+<div class="Form">
+  <div class="Account__Form">
+    <div class="Title__Account__Form">
+      <div class="Left__Account__Form">
+        <p>MY ACCOUNT</p>
+        <a routerLink="OrderAndReturn" [class.fontweght]="check[0]"
+          >Orders & Returns</a
+        >
+        <a routerLink="Credit" [class.fontweght]="check[1]">Account credit</a>
+        <a routerLink="Detail" [class.fontweght]="check[2]">Account details</a>
+        <!-- <a [class.fontweght]="check[3]">Address book</a> -->
+        <a routerLink="ConnectedService" [class.fontweght]="check[4]"
+          >Connected services</a
+        >
+      </div>
+      <div class="Right__Account__Form">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="SignOut__Account">
+  <p>Not Long Đỗ?</p>
+  <a>Sign out</a>
+</div>

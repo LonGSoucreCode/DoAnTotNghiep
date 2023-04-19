@@ -1,0 +1,107 @@
+<div class="Form">
+  <div class="BagForm">
+    <div class="Tittle__Form">
+      <div class="UserBag__Tittle">
+        <h1>SHOPPING BAG</h1>
+        <div *ngIf="BagCount == 0">
+          <p>There’s nothing in your bag yet...</p>
+          <button class="SignInBag__Form" (click)="Router('', -1, -2)">
+            Shop Now
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="Bag__User__Form" *ngIf="BagCount > 0">
+      <div class="Left__Bag">
+        <div class="Left__title__Form">
+          <p>You may have to pay import duties</p>
+          <a href="">Continue Shopping</a>
+        </div>
+        <div
+          class="Card__Bag"
+          [class.none]="check[product.id]"
+          [class.opacity]="checkopacity[product.id]"
+          *ngFor="let product of ListProduct"
+        >
+          <div class="img__Bag__Card">
+            <app-img-product-bag
+              [IdImg]="product.image_Product_id"
+            ></app-img-product-bag>
+          </div>
+          <div
+            class="Info__Bag__Card"
+            (click)="
+              Router(product.product_Name, product.product_id, product.size_id)
+            "
+          >
+            <div class="card__title__Form">
+              <app-brand [id]="product.brand_id"></app-brand>
+            </div>
+            <div class="card__Name__Form">
+              <a>{{ product.product_Name }}</a>
+              <div class="FARFETCHID">
+                <p>FARFETCH ID:</p>
+                <p>{{ product.product_id }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="Price__Bag__card bold">{{ product.product_Price }}</div>
+          <div class="Size__Bag__Form">
+            <app-size-bag [SizeID]="product.size_id"></app-size-bag>
+            <div class="change__Bag">
+              <p>Quanlity</p>
+              <p class="bold">{{ product.quality }} <a href="">Change</a></p>
+            </div>
+            <app-wishlist-bag
+              [IdProduct]="product.product_id"
+              [IdSize]="product.size_id"
+              [Id]="product.id"
+              (newItemEvent)="Onclick($event)"
+            ></app-wishlist-bag>
+          </div>
+          <div
+            class="Delete__Shoe__Bag"
+            (click)="Count(product.id, product.product_id, product.size_id)"
+            (click)="TotalDown(product.product_Price)"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+      </div>
+      <div class="Right__Bag">
+        <p class="Tittle__Summary">Summary</p>
+        <div class="Total subtotal">
+          <p>Subtotal</p>
+          <p>${{ Total }}.00</p>
+        </div>
+        <div class="Total Delivery">
+          <p>Delivery</p>
+          <p>${{ Delivery }}.00</p>
+        </div>
+        <div class="TotalBag">
+          <p style="flex: 1">Total</p>
+          <p style="margin-right: 5px">USD</p>
+          <p class="bold">${{ Total + Delivery }}.00</p>
+        </div>
+        <div class="Button__Bag">
+          <div class="Goto__checkout__bag" (click)="CheckOut(String)">
+            {{ String }}
+          </div>
+          <div
+            class="Goto__Cancel__bag"
+            (click)="Cancel()"
+            *ngIf="CancelBill == true"
+          >
+            Cancel
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-reputationmain-form *ngIf="NameUser == 'null'"></app-reputationmain-form>
+<app-reputation-form *ngIf="NameUser != 'null'"></app-reputation-form>
+<app-wishlist-list></app-wishlist-list>
+<app-need-help></app-need-help>
+<app-contact-form></app-contact-form>

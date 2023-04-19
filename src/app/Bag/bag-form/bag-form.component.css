@@ -1,0 +1,222 @@
+
+
+.Tittle__Form {
+  width: 100%;
+}
+.UserBag__Tittle {
+  width: 100%;
+  margin: 25px auto;
+  padding: 0 30px;
+}
+.UserBag__Tittle h1 {
+  text-align: left;
+}
+.UserBag__Tittle p{
+  margin: 5px 0 20px 0;
+  font-size: 14px;
+}
+.BagForm{
+  width: 100%;
+  background-color: white;
+}
+.Bag__User__Form {
+  width: 100%;
+  display: flex;
+  padding: 0 30px 40px;
+}
+.Left__Bag {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.Left__title__Form {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #b6b6b6;
+  padding-bottom: 20px;
+}
+.Left__title__Form p {
+  flex: 1;
+  font-size: 14px;
+}
+.Left__title__Form a {
+  margin-right: 10px;
+  color: #000;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.Left__title__Form a:hover {
+  margin-right: 10px;
+  color: #b6b6b6;
+}
+.Card__Bag {
+  max-height: 210px;
+  display: flex;
+  padding-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+.Info__Bag__Card {
+  width: 32%;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.card__title__Form a {
+  transition: 0.2s;
+  font-weight: 600;
+  cursor: pointer;
+}
+.card__title__Form a:hover {
+  cursor: pointer;
+}
+.card__Name__Form {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+.card__Name__Form a {
+  font-size: 16px;
+  transition: 0.2s;
+  margin-bottom: 5px;
+}
+.card__Name__Form a:hover {
+  cursor: pointer;
+}
+.FARFETCHID{
+  display: flex;
+  flex-direction: row;
+}
+.FARFETCHID p{
+  margin-right: 5px;
+}
+.Size__Bag__Form {
+  width: 43%;
+  padding-left: 15%;
+}
+.change__Bag a {
+  font-size: 13px;
+  color: black;
+  margin-left: 3px;
+  transition: 0.2s;
+}
+.change__Bag a:hover {
+  cursor: pointer;
+  color: #d1d1d1;
+}
+
+.change__Bag {
+  margin-bottom: 20px;
+}
+
+.Right__Bag {
+  width: 25%;
+  margin: 20px 0 0 30px;
+}
+.Tittle__Summary {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+.Total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.Delivery {
+  margin-bottom: 30px;
+}
+.TotalBag {
+  display: flex;
+  padding: 20px 0;
+  border-top: 1px solid #c4c2c2;
+}
+.Button__Bag{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.Goto__checkout__bag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  font-weight: 550;
+  font-size: 1rem;
+  color: white;
+  background: #000;
+  cursor: pointer;
+  transition: 0.2s;
+  opacity: 0.85;
+}
+.Goto__checkout__bag:hover {
+  opacity: 0.6;
+}
+.Goto__Cancel__bag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  width: 40%;
+  margin-left: 3%;
+  border-radius: 5px;
+  border: none;
+  font-weight: 550;
+  font-size: 1rem;
+  color: white;
+  background: #000;
+  cursor: pointer;
+  transition: 0.2s;
+  opacity: 0.85;
+}
+.Goto__Cancel__bag:hover {
+  background: #e60000;
+}
+.Delete__Shoe__Bag {
+  width: 7%;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+.SignInBag__Form {
+  padding: 10px 20px;
+  border: 0.5px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  background: #000;
+  font-size: 15px;
+  font-weight: bold;
+}
+.SignInBag__Form:hover {
+  opacity: 0.5;
+}
+.bold {
+  font-weight: bold;
+}
+.Price__Bag__card {
+  width: 8%;
+  text-align: right;
+}
+.bold a{
+  font-weight: normal;
+}
+.img__Bag__Card {
+  height: 100%;
+  width: 20%;
+  text-align: center;
+  cursor: pointer;
+}
+.none {
+  display: none;
+}
+.opacity {
+  filter: blur(3px);
+}

@@ -1,0 +1,100 @@
+.WishList__Form {
+  width: 100%;
+  margin-bottom: 50px;
+}
+.WishList__Form__Tittle {
+  text-align: center;
+  margin-top: 48px;
+}
+.WishList__Form__Tittle h1 {
+  font-weight: normal;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+.WishList__content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.WishList__content a {
+  text-decoration: underline 1px black;
+  transition: 0.3s;
+}
+.WishList__content a:hover {
+  cursor: pointer;
+  color: #727272;
+}
+.WishList__List {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.card__Form__Wishlist {
+  width: 13%;
+  margin: 0 1%;
+  background-color: white;
+  font-size: 15px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  position: relative;
+}
+.card__img__Form {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.card__img__Form img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all linear 0.3s;
+}
+.card__img__Form img.hover_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.card__img__Form:hover img {
+  opacity: 0;
+}
+.card__img__Form:hover img.hover_img {
+  opacity: 1;
+}
+.Card__Bottom {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 110px;
+  background-color: white;
+  font-size: 14px;
+  padding-bottom:20px;
+}
+.Card__Bottom:hover .Card__Bottom.hover {
+  opacity: 0;
+}
+.Card__Bottom:hover div.Card__Bottom__Hover {
+  opacity: 1;
+}
+
+.card__Name__Form a {
+  transition: 0.2s;
+  font-size: 16px;
+  font-weight: 300;
+  height: 42px;
+  flex: 1;
+}
+.card__Name__Form a:hover {
+  cursor: pointer;
+}
+.card__title__Form a {
+  transition: 0.2s;
+  font-weight: 600;
+  flex: 1;
+}
+.card__title__Form a:hover {
+  cursor: pointer;
+}

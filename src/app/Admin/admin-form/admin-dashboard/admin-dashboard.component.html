@@ -1,0 +1,56 @@
+
+<ul class="box-info">
+  <li>
+    <i class="bx bxs-calendar-check"></i>
+    <span class="text">
+      <h3>{{OrderCount}}</h3>
+      <p>New Order</p>
+    </span>
+  </li>
+  <li>
+    <i class="bx bxs-group"></i>
+    <span class="text">
+      <h3>{{UserCount}}</h3>
+      <p>Users</p>
+    </span>
+  </li>
+  <li>
+    <i class="bx bxs-dollar-circle"></i>
+    <span class="text">
+      <h3>${{Total}}</h3>
+      <p>Total Sales</p>
+    </span>
+  </li>
+</ul>
+
+<div class="table-data">
+  <div class="order">
+    <div class="head">
+      <h3>Recent Orders</h3>
+      <i class="bx bx-search"></i>
+      <i class="bx bx-filter"></i>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Total</th>
+          <th>Date Order</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bill of BillList">
+          <td>{{bill.bill_id}}</td>
+          <td>
+            <p>{{bill.name}}</p>
+          </td>
+          <td>${{bill.bill_Total}}</td>
+          <td>{{bill.createTime}}</td>
+          <td><span class="status completed">Completed</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

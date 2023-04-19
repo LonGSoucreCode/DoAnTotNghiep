@@ -1,0 +1,22 @@
+<div class="WishList__icon__Heart">
+  <div class="WishList__icon__Heart__Hover" *ngIf="NameUser != 'null'">
+    <div class="" *ngIf="Iconcheck == true">
+      <i class="bx {{icon}} icon_hover" [class.IconClick]="Iconcheck" (click)="DeleteWishList(icon)"></i>
+    </div>
+    <div class="" *ngIf="Iconcheck == false">
+      <i class="bx bxs-heart icon_hover" [class.IconClick]="Iconcheck" (click)="AddWishList()"></i>
+      <i class="bx bx-heart"></i>
+    </div>
+  </div>
+
+
+  <div class="WishList__icon__Heart__Hover" *ngIf="NameUser == 'null'">
+    <div class="" *ngIf="Iconcheck == true">
+      <i class="bx {{icon}} icon_hover" [class.IconClick]="Iconcheck" (click)="DeleteWishListNoUser(icon)"></i>
+    </div>
+    <div class="" *ngIf="Iconcheck == false">
+      <i class="bx bxs-heart icon_hover" [class.IconClick]="Iconcheck" (click)="AddWishListNoUser()"></i>
+      <i class="bx bx-heart"></i>
+    </div>
+  </div>
+</div>

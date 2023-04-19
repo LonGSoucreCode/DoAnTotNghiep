@@ -1,0 +1,51 @@
+<div class="MainContent__OrderReturn">
+  <div class="Right__Account__Title">Orders & Returns</div>
+  <div class="OrderAndReturn">
+    <div
+      class="OrderAccount"
+      [class.Choose]="OrAndRe.CheckOrder"
+      (click)="Click(0)"
+    >
+      Orders
+    </div>
+    <div
+      class="ReturnAcount"
+      [class.Choose]="OrAndRe.CheckReturn"
+      (click)="Click(1)"
+    >
+      Returns
+    </div>
+  </div>
+</div>
+<div class="ChangeContent__Order">
+  <p>{{ OrAndRe.MainParaphrase }}</p>
+  <div class="OrderAndReturn__Title"  *ngIf="BillList.length == 0">
+    <div class="Icon__OrderAndReturn">
+      <i class="bx bx-chevrons-{{OrAndRe.icon}}"></i>
+      <i class="bx bx-package"></i>
+    </div>
+    <h4>You currently have no {{OrAndRe.name}}</h4>
+    <p>{{OrAndRe.Paraphrase}}</p>
+    <button>{{OrAndRe.button}}</button>
+  </div>
+  <div class="OrderAndReturnItem__Title" *ngIf="BillList.length > 0">
+    <ul class="BillMenu">
+      <li>id</li>
+      <li>Count</li>
+      <li>Total</li>
+      <li>Create</li>
+      <li>?</li>
+    </ul>
+    <ul *ngFor="let bill of BillList">
+      <div class="Billist">
+        <li>{{ bill.id }}</li>
+        <li>{{ bill.bill_Count }}</li>
+        <li>${{ bill.bill_Total.replace("-", "") }}</li>
+        <li>{{ bill.createTime.substring(0, 10) }}</li>
+        <li class="see" (click)="See(bill.id-1)">See</li>
+      </div>
+      <div class="borderline"></div>
+      <app-bill-productlist [BillID]="bill.bill_id" [class.none]="BillCheck[bill.id-1]"></app-bill-productlist>
+    </ul>
+  </div>
+</div>

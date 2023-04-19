@@ -1,0 +1,45 @@
+.Add__WishList__bag {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-top: 30px;
+  transition: 0.2s;
+}
+.change {
+  transition: all linear 0.1s;
+  cursor: pointer;
+}
+.Add__WishList__bag:hover .change {
+  color: #b6b6b6;
+}
+.Add__WishList__bag a {
+  font-size: 13px;
+  text-decoration: underline solid #000000;
+}
+.Add__WishList__bag p {
+  font-size: 13px;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+.icon:hover {
+  color: #b8b8b8;
+}
+.icon i {
+  position: absolute;
+  font-size: 20px;
+}
+.opacity {
+  opacity: 0;
+}
+.color {
+  color: #222;
+}
+.color2{
+  color: #b8b8b8 !important;
+}

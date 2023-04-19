@@ -1,0 +1,72 @@
+<div class="MainContent__Credit">
+  <div class="Right__Account__Title">Account credit</div>
+</div>
+<div class="Right__TotalCredit">
+  <div class="TotalCredit">
+    <h1>${{User.credit}}.00</h1>
+    <h4>Total credit</h4>
+  </div>
+  <div class="Hitory__Credit">
+    <h3>Nothing to see here, yet</h3>
+    <p>Your available credit and history will show here</p>
+    <div class="OrderAndReturnItem__Title" *ngIf="BillList.length > 0">
+      <ul class="BillMenu">
+        <li>id</li>
+        <li>Count</li>
+        <li>Create</li>
+      </ul>
+      <ul *ngFor="let bill of BillList">
+        <div class="Billist">
+          <li>{{ bill.id }}</li>
+          <li>{{ bill.bill_Total}}$</li>
+          <li>{{ bill.createTime.substring(0, 10) }}</li>
+        </div>
+        <div class="borderline"></div>
+      </ul>
+    </div>
+  </div>
+  <div class="Question__Credit">
+    <h3>Have a question?</h3>
+    <div class="FAQs__Credit" (click)="Click()">
+      <div class="FAQs__Title">FAQs</div>
+      <i class="bx bxs-chevron-down" [class.tranform]="check"></i>
+    </div>
+    <ul [class.FAQsShow]="check">
+      <li>
+        <h5>What is credit?</h5>
+        <p>
+          Credit is an amount stored in your account that can be put towards
+          FARFETCH purchases.
+        </p>
+      </li>
+      <li>
+        <h5>How do I get credit?</h5>
+        <p>
+          There are many ways to get credit, from selling through Second Life
+          and Thrift+ donations, to campaigns and returns.
+        </p>
+      </li>
+      <li>
+        <h5>How do I use credit?</h5>
+        <p>
+          Available credit is automatically applied at checkout the next time
+          you place an order.
+        </p>
+      </li>
+      <li>
+        <h5>How do I check my credit balance?</h5>
+        <p>
+          View your credit balance and history by going to the Account Credit
+          page in your account.
+        </p>
+      </li>
+      <li>
+        <h5>Why has my credit expired?</h5>
+        <p>
+          Sometimes, if credit is earned from a campaign it is only valid for a
+          specified time. Check the terms and conditions so you don't miss out.
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>

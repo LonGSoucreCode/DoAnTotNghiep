@@ -1,0 +1,46 @@
+<div class="table-data">
+  <div class="order">
+    <div class="head">
+      <h3>{{List}} List</h3>
+      <p (click)="ChangeList(1)">Product</p>
+      <p (click)="ChangeList(2)">Brand</p>
+      <p>Nsx</p>
+      <p>Category</p>
+      <p>+</p>
+      <p>-</p>
+      <i class="bx bx-search"></i>
+      <i class="bx bx-filter"></i>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let code of ListCode">{{code.list_name}}</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="Num == 1">
+        <tr *ngFor="let product of ListProduct" (click)="Router(product.product_Name,product.product_id)">
+          <td>{{product.id}}</td>
+          <td>
+            <img
+              [src]="product.image"
+            />
+          </td>
+          <td>{{product.product_Name}}</td>
+          <td>{{product.product_Price}}</td>
+          <td>{{product.brand}}</td>
+          <td>High-top</td>
+          <td><span class="status Active">{{product.Status}}</span></td>
+          <td class="See">See</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="Num == 2">
+        <tr *ngFor="let brand of ListProduct">
+          <td>{{brand.id}}</td>
+          <td>{{brand.brand_Name}}</td>
+          <td>{{brand.nsx}}</td>
+          <td><span class="status Active">{{brand.Status}}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

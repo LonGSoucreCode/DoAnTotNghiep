@@ -1,0 +1,31 @@
+<div class="table-data">
+  <div class="order">
+    <div class="head">
+      <h3>User List</h3>
+      <p>+</p>
+      <p>-</p>
+      <i class="bx bx-search"></i>
+      <i class="bx bx-filter"></i>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let code of ListCode">{{code.list_name}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of ListUser">
+          <td>{{user.id}}</td>
+          <td>{{user.email}}@gmail.com</td>
+          <td>********</td>
+          <td>{{user.lastName + ' ' + user.firstName}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.address}}</td>
+          <td>${{user.credit}}</td>
+          <td><span class="status {{user.Status}}">{{user.Status}}</span></td>
+          <td class="See">See</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

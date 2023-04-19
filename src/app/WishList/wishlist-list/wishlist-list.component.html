@@ -1,0 +1,35 @@
+<div class="Form">
+  <div class="WishList__Form" *ngIf="ListProduct.length > 0">
+    <div class="WishList__Form__Tittle">
+      <h1>FROM YOUR WISHLIST</h1>
+      <div class="WishList__content">
+        <p>Your favorites are waiting...</p>
+        <a (click)="Router('WishList', -1, -1)">Go to wishlist</a>
+      </div>
+    </div>
+    <div class="WishList__List">
+      <div class="card__Form__Wishlist" *ngFor="let product of ListProduct">
+        <div class="Card__Top">
+          <app-image-product
+            [id]="product.image_Product_id"
+            (click)="
+              Router(product.product_Name, product.product_id, product.size_id)
+            "
+          ></app-image-product>
+        </div>
+        <div
+          class="Card__Bottom"
+          (click)="
+            Router(product.product_Name, product.product_id, product.size_id)
+          "
+        >
+          <div style="flex: 1">
+            <app-brand [id]="product.brand_id"></app-brand>
+            <div class="card__Name__Form">{{ product.product_Name }}</div>
+          </div>
+          <div class="card__price__Form">{{ product.product_Price }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

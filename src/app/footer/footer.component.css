@@ -1,0 +1,104 @@
+
+footer {
+  margin: auto;
+  background: #f2f2f2;
+  width: 100%;
+  padding: 30px 30px 40px;
+  display: flex;
+  flex-direction: column;
+}
+.Container__Form__Footer {
+  margin-bottom: 35px;
+  text-align: center;
+}
+.Email__Form__Footer {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+  flex-wrap: wrap;
+}
+.Email__Form__Footer span {
+  display: block;
+  margin-right: 10px;
+}
+.Email__Form__Footer input {
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  box-shadow: none;
+  flex: 1.5;
+}
+.Email__Form__Footer button {
+  color: white;
+  background: #000;
+  width: 10%;
+  box-shadow: none;
+  border: none;
+  transition: 0.2s;
+  cursor: pointer;
+  height: 40px;
+  flex: 0.6;
+}
+.Main__Social {
+  width: 100;
+}
+
+.Footer__Social {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+}
+.Footer__Social li {
+  width: 25%;
+  font-size: 20px;
+  cursor: pointer;
+  list-style-type: none;
+  transition: 0.5s;
+}
+.Footer__Social li a {
+  text-decoration: none;
+  color: #000;
+  transition: 0.5s;
+}
+.Footer__Social li a:hover {
+  color: #e51d2b;
+}
+.Footer__Social li i {
+  font-size: 25px;
+  margin-right: 5px;
+}
+.End__Footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.End__Footer div ul {
+  list-style-type: none;
+}
+.End__Footer div hr {
+  width: 40%;
+}
+.Contact__Footer {
+  flex: 2;
+}
+.Category__Footer {
+  flex: 1;
+}
+.Policy__Footer {
+  flex: 1;
+}
+.Support__Footer {
+  flex: 1;
+}
+.End__Footer div li {
+  transition: linear all 0.5s;
+  margin-top: 5px;
+}
+.End__Footer div li:hover {
+  text-decoration: underline;
+}
+.End__Footer div li a {
+  color: #000;
+  text-decoration: none;
+}

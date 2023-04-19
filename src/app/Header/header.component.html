@@ -1,0 +1,95 @@
+<header>
+  <div class="Top_tiltle">
+    <p>Incoming |<a> Shop the latest arrivals here</a></p>
+  </div>
+  <div class="Account__Form__Hover" [class.AccountClose]="AccountCheck">
+    <div class="Account__Form__Hover__Extra">
+      <div class="Account__Form__Hover__Tiltle">
+        <p>{{NameUser}}</p>
+        <a (click)="Router('/Account/Detail')">Detail & Password</a>
+        <a (click)="Router('Account/OrderAndReturn')">Orders & Returns</a>
+        <a (click)="Router('/Account/Credit')">Account Credit</a>
+        <a (click)="SignOut()">Sign Out</a>
+      </div>
+      <div class="My__Account__Button">
+        <div class="My__Account__icon" (click)="AccountClose()">
+          <i class='bx bx-x'></i>
+        </div>
+        <div class="Button__Account">
+          <p>My account</p>
+          <i class='bx bxs-chevron-right' id="Filter"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Top__header">
+    <div class="Top_Header_Left">
+      <ul class="Header__List">
+        <li class="User__Header" (click)="ChangeObject(0)">
+          <p class="Name__User__Header" [class.fontweight]="ObjectCheck[0]">Mens</p>
+        </li>
+        <li class="User__Header"  (click)="ChangeObject(1)">
+          <p class="Name__User__Header" [class.fontweight]="ObjectCheck[1]">Womens</p>
+        </li>
+        <li class="User__Header"  (click)="ChangeObject(2)">
+          <p class="Name__User__Header" [class.fontweight]="ObjectCheck[2]">Kids</p>
+        </li>
+      </ul>
+    </div>
+    <div class="Top_Header_Center" [routerLink]="['']">ShoeShop</div>
+    <div class="Top_Header_Right">
+      <ul class="Header__List">
+        <li class="User__Header" (click)="AccountClose()"  *ngIf="UserCheck != 'null'">
+          <i class="bx bx-user"></i>
+          <p class="Name__User__Header">{{NameUser}}</p>
+        </li>
+        <li class="User__Header" (click)="LoginShow()"  *ngIf="UserCheck == 'null'">
+          <i class="bx bx-user"></i>
+        </li>
+        <li class="Heart__header" [routerLink]="['WishList']">
+          <i class="bx bx-heart"></i>
+          <p>{{WishListCount}}</p>
+        </li>
+        <li class="Cart__Header" [routerLink]="['Bag']">
+          <i class='bx bx-shopping-bag'></i>
+          <p>{{BagCount}}</p>
+        </li>
+      </ul>
+      <!-- <ul class="Header__List" *ngIf="UserCheck == 'null' || UserCheck == null">
+        <li class="User__Header" (click)="LoginShow()">
+          <i class="bx bx-user"></i>
+        </li>
+        <li class="Heart__header" [routerLink]="['WishList']">
+          <i class="bx bx-heart"></i>
+          <p></p>
+        </li>
+        <li class="Cart__Header" [routerLink]="['Bag']">
+          <i class='bx bx-shopping-bag'></i>
+          <p></p>
+        </li>
+      </ul> -->
+    </div>
+  </div>
+  <div class="Bottom__header">
+    <ul class="Header__List">
+      <li><a href="#">New In</a></li>
+      <li><a href="#">Home</a></li>
+      <li>
+        <a href="#">Brands</a>
+        <ul class="Header__sub-menu">
+          <li><a href="#">Jordan</a></li>
+          <li><a href="#">Nike</a></li>
+          <li><a href="#">Adidas</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Sneakers</a></li>
+      <li><a href="#" style="color: #e71d34;">Sale</a></li>
+    </ul>
+    <ul class="Header__Search">
+      <input type="text" placeholder="Search" />
+      <div>
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </ul>
+  </div>
+</header>

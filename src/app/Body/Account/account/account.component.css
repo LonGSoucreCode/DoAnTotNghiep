@@ -1,0 +1,83 @@
+.Account__Form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 77.2vh;
+}
+.Title__Account__Form {
+  flex: 1;
+  display: flex;
+}
+.Title__Account__Form p {
+  font-size: 13px;
+}
+.Left__Account__Form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 5px 15px;
+  line-height: 2.5;
+  font-size: 14px;
+  padding-left: 25px;
+}
+.Left__Account__Form a {
+  text-decoration: none;
+  color: black;
+  padding-left: 15px;
+  cursor: pointer;
+}
+.Left__Account__Form a:hover {
+  text-decoration: underline;
+}
+.Right__Account__Form {
+  width: 75%;
+}
+.Right__Account__Title {
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.SignOut__Account {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 13px;
+  color: white;
+  background-color: #222;
+  padding: 10px 40px;
+  align-items: flex-end;
+}
+.SignOut__Account p {
+  margin-right: 10px;
+}
+.SignOut__Account a {
+  color: white;
+  text-decoration: none;
+}
+.Click__Color {
+  color: #222 !important;
+  border-bottom: 2px solid #222;
+}
+.Click__NoColor {
+  color: #727272 !important;
+}
+
+/* ------------------------------------------------------- */
+.Right__Connected {
+  text-align: center;
+  padding: 0 50px;
+}
+.Right__Connected i {
+  font-size: 25px;
+  margin: 20px 0 25px 0;
+}
+.Right__Connected h4 {
+  margin-bottom: 10px;
+}
+
+.fontweght {
+  font-weight: bold !important;
+}
+.fontweght:hover {
+  text-decoration: underline !important;
+}

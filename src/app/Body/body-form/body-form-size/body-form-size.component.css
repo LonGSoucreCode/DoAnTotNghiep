@@ -1,0 +1,31 @@
+
+.size_submenu {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  display: none;
+}
+.size_submenu li {
+  display: flex;
+  width: 21%;
+  height: 40px;
+  margin: 15px 6%;
+  border: #e6e6e6 solid 1px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 3px;
+}
+.size_submenu li:hover {
+  border: #b6b6b6 solid 1px;
+}
+
+.hideflex{
+  display: flex;
+}
+.border{
+  border: #222 solid 1px !important;
+}

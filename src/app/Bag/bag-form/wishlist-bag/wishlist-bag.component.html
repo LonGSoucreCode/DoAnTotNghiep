@@ -1,0 +1,15 @@
+<div class="Add__WishList__bag" *ngIf="CheckWishList == true">
+  <div class="icon">
+    <i class="bx bxs-heart color"></i>
+  </div>
+  <p>{{ ParaphraseBag }}</p>
+</div>
+<div class="Add__WishList__bag" *ngIf="CheckWishList == false"  (click)="Click()">
+  <div class="icon change">
+    <i class="bx bxs-heart" [class.opacity]="iconcheck[0]"></i>
+    <i class="bx bx-heart" [class.opacity]="iconcheck[1]"></i>
+  </div>
+  <a class="change">{{ ParaphraseBag }}</a>
+</div>
+
+<!-- <i class="bx bxs-heart" [class.opacity]="true" (mouseleave)="IConChange()" (mouseenter)="IConChange()"></i> -->

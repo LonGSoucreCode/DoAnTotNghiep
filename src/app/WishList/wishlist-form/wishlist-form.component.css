@@ -1,0 +1,215 @@
+.WishListForm {
+  width: 100%;
+  background-color: white;
+}
+.WishList__Tittle {
+  width: 100%;
+  padding: 50px 32.5%;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.WishList__Tittle h1 {
+  font-weight: 700;
+}
+.WishList__Tittle p {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.buynow__Form__WishList a {
+  font-size: 16px;
+  color: white;
+}
+.buynow__Form__WishList {
+  height: 45px;
+  border: none;
+  padding: 0 10px;
+  border-radius: 5px;
+  margin: 5px auto;
+  cursor: pointer;
+  transition: all linear 0.3s;
+  min-width: 320px;
+  color: white;
+  background: #000;
+  font-weight: 600;
+}
+.buynow__Form__WishList:hover {
+  opacity: 0.8;
+}
+
+.all__Card {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 5px;
+}
+
+.card__Form {
+  width: 22%;
+  min-width: 270px;
+  margin: 0 1.5% 40px;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card__Form__Wishlist {
+  width: 13%;
+  margin: 0 1%;
+  background-color: white;
+  font-size: 15px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  position: relative;
+}
+
+.card__Form__Recommendations {
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  margin: 0 1% 40px 1%;
+  background-color: white;
+  font-size: 15px;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.card__img__Form {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.WishList__icon__Heart,
+.WishList__icon__Close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  right: 0;
+  border-radius: 7px;
+  transition: all linear 0.1s;
+  position: absolute;
+  z-index: 1;
+}
+.WishList__icon__Heart__Hover {
+  position: relative;
+  overflow: hidden;
+  height: 25px;
+  width: 25px;
+}
+.WishList__icon__Heart:hover {
+  background: #f5f5f5;
+}
+.WishList__icon__Heart:hover .icon_hover {
+  opacity: 1;
+}
+.WishList__icon__Heart i {
+  font-size: 25px;
+  margin: auto;
+}
+.WishList__icon__Close:hover {
+  background: #f5f5f5;
+}
+.WishList__icon__Close i {
+  font-size: 25px;
+  margin: auto;
+}
+.IconClick {
+  opacity: 1 !important;
+  color: #222 !important;
+}
+.card__img__Form img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all linear 0.3s;
+}
+
+.card__img__Form img.hover_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.card__img__Form:hover img {
+  opacity: 0;
+}
+.card__img__Form:hover img.hover_img {
+  opacity: 1;
+}
+
+.card__title__Form {
+  font-weight: bold;
+}
+.card__Name__Form {
+  min-height: 45px;
+}
+.Card__Bottom {
+  position: relative;
+  height: 110px;
+  background-color: white;
+  overflow: hidden;
+}
+.Card__Bottom:hover .Card__Bottom.hover {
+  opacity: 0;
+}
+.Card__Bottom:hover div.Card__Bottom__Hover {
+  opacity: 1;
+}
+.Card__Bottom__Hover {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 2;
+  transition: all ease-in 0.1s;
+}
+.card__Size__Card {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.Size__Shoes__Card {
+  width: 100%;
+  height: 45px;
+  border: 0.5px solid rgb(0, 0, 0);
+  padding: 0 10px;
+  border-radius: 5px;
+}
+.colorchange {
+  background: #191919;
+  color: #ffffff;
+}
+.icon_hover {
+  color: #727272;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: all ease-in 0.1s;
+  z-index: 2;
+}
+.none {
+  display: none;
+}
+.opacity {
+  filter: blur(3px);
+}
+.juscontent {
+  justify-content: center;
+}

@@ -1,0 +1,116 @@
+.OrderAndReturn {
+  display: flex;
+  cursor: pointer;
+}
+p {
+  font-size: 13px;
+}
+.OrderAndReturn div {
+  font-size: 17px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+.MainContent__OrderReturn {
+  height: 23%;
+}
+.OrderAndReturn__Title {
+  height: 77%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.OrderAndReturnItem__Title {
+  height: 77%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.OrderAndReturnItem__Title ul {
+}
+.BillMenu,
+.Billist {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.Billist li,.BillMenu li {
+  list-style: none;
+  width: 20%;
+  font-size: 13px;
+}
+.OrderAndReturnItem__Title ul .see {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: linear all 0.2s;
+}
+.OrderAndReturnItem__Title ul .see:hover {
+  opacity: 0.5;
+}
+.ChangeContent__Order,
+.ChangeContent__Return {
+  display: flex;
+  flex-direction: column;
+  height: 77%;
+}
+.ChangeContent__Order p{
+  margin-bottom: 10px;
+}
+.Icon__OrderAndReturn {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.bx-chevrons-down,
+.bx-chevrons-up {
+  font-size: 25px;
+}
+.bx-package {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.OrderAndReturn__Title p {
+  margin-bottom: 20px;
+}
+.OrderAndReturn__Title button {
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px ridge black;
+  font-weight: 600;
+  cursor: pointer;
+}
+.OrderAndReturn__Title button:hover {
+  background-color: #f5f5f5;
+}
+.Right__Account__Title {
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.Choose {
+  color: #222 !important;
+  border-bottom: 2px solid #222;
+}
+
+.OrderAccount,
+.ReturnAcount {
+  color: #727272;
+}
+
+
+.bold {
+  font-weight: bold;
+}
+.borderline{
+  height: 1px;
+  width: 85%;
+  background-color: #f5f5f5;
+  margin-bottom: 20px;
+}
+.none{
+  display: none;
+}

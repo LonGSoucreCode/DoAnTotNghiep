@@ -1,0 +1,21 @@
+<div class="DetailBill">
+  <ul class="Card__Bag" *ngFor="let product of ListProduct">
+    <li class="img__Bag__Card">
+      <app-img-product-bag
+        [IdImg]="product.image_Product_id"
+      ></app-img-product-bag>
+    </li>
+    <li class="card__name__Form">
+      <app-brand [id]="product.brand_id"></app-brand>
+      <p>{{product.product_Name}}</p>
+    </li>
+    <li class="card__price__Form">
+      <p>{{product.product_Price}}</p>
+      <p>Quality: <a class="bold">{{product.quality}}</a></p>
+      <p>Size: <app-bill-size [SizeID]="product.size_id"></app-bill-size></p>
+    </li>
+    <li class="card__title__Form">
+      <p>{{product.createTime.substring(0,10)}}</p>
+    </li>
+  </ul>
+</div>

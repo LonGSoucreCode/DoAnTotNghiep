@@ -1,0 +1,43 @@
+
+.DetailBill{
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.Card__Bag {
+  height: 110px;
+  width: 100%;
+  display: flex;
+}
+.Card__Bag li{
+  list-style: none;
+  width: 20%;
+}
+.img__Bag__Card {
+  height: 100%;
+  cursor: pointer;
+}
+img {
+  height: 100%;
+  object-fit: cover;
+}
+.card__title__Form{
+  font-size: 13px;
+}
+.card__name__Form{
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+}
+
+
+
+
+.bold {
+  font-weight: bold;
+}
+.borderline{
+  height: 1px;
+  width: 85%;
+  background-color: #f5f5f5;
+  margin-bottom: 20px;
+}

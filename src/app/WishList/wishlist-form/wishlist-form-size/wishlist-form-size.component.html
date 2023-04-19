@@ -1,0 +1,25 @@
+<div class="card__Size__Detail" (click)="Show()" [class.border]="checksize">
+  <p *ngIf="SizeNumber == 0">Select size (Jordan US Men)</p>
+  <p class="color" *ngIf="SizeNumber != 0" >{{SizeNumber}} US</p>
+  <i class="bx bxs-chevron-down" [class.tranform]="checksize"></i>
+</div>
+<div class="card__Size__Detail__Hover" [class.show]="checksize">
+  <ul *ngIf="SizeProductList.length > 0">
+    <li class="US">
+      <div class="Card__Size__Title">
+        <div class="Card__Size__Number">
+          <h4 style="font-weight: bold;">United States (US)</h4>
+        </div>
+      </div>
+    </li>
+    <li class="size" *ngFor="let size of SizeProductList"  (click)="ChangeSize(size.size_Surcharges,size.product_id,size.size_id)" >
+      <div class="Card__Size__Title">
+        <div class="Card__Size__Number">
+          <app-product-detail-sizenumber [id]="size.size_id" [font]="font"></app-product-detail-sizenumber>
+          <p *ngIf="size.size_Quantity == 1">*</p>
+        </div>
+        <app-product-detail-price [id]="size.product_id" [Surcharges]="size.size_Surcharges"></app-product-detail-price>
+      </div>
+    </li>
+  </ul>
+</div>

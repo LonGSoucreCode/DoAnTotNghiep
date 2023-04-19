@@ -1,0 +1,22 @@
+
+.change__Bag a {
+  font-size: 13px;
+  color: black;
+  margin-left: 3px;
+  transition: 0.2s;
+}
+.change__Bag a:hover {
+  cursor: pointer;
+  color: #d1d1d1;
+}
+
+.change__Bag {
+  margin-bottom: 20px;
+}
+.bold {
+  font-weight: bold;
+}
+
+.bold a{
+  font-weight: normal;
+}

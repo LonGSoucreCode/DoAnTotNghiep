@@ -1,0 +1,11 @@
+h4 {
+  width: 10%;
+  margin-right: 5px;
+  /* font-weight: normal; */
+}
+.bold{
+  font-weight: bold !important;
+}
+.normal{
+  font-weight: normal !important;
+}
