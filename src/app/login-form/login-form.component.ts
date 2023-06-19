@@ -96,11 +96,6 @@ export class LoginFormComponent implements OnInit {
           this.RemoveCookie();
         }, 100);
         setTimeout(() => {
-          if (user.role_id == 1) {
-            this.route.navigate(['admin']);
-          } else {
-            this.route.navigate(['']);
-          }
           setTimeout(() => {
             location.reload();
           }, 100);
@@ -264,7 +259,7 @@ export class LoginFormComponent implements OnInit {
       this.CheckRegister[0] = false;
       this.CheckRegister[4] = false;
     }
-    if(this.UserRegister.password != this.UserRegister.passwordcom){
+    if (this.UserRegister.password != this.UserRegister.passwordcom) {
       this.CheckRegister[0] = true;
       this.CheckRegister[4] = true;
     }

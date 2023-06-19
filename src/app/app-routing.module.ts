@@ -14,6 +14,8 @@ import { AdminDashboardComponent } from './Admin/admin-form/admin-dashboard/admi
 import { AdminMystoreComponent } from './Admin/admin-form/admin-mystore/admin-mystore.component';
 import { AdminUserComponent } from './Admin/admin-form/admin-user/admin-user.component';
 import { SearchFormComponent } from './search-form/search-form.component';
+import { AdminLoginComponent } from './Admin/admin-form/admin-login/admin-login.component';
+import { AdminOrderComponent } from './Admin/admin-form/admin-order/admin-order.component';
 
 const routes: Routes = [
 
@@ -82,9 +84,17 @@ const routes: Routes = [
       {
         path: 'user',
         component: AdminUserComponent
+      },
+      {
+        path: 'order',
+        component: AdminOrderComponent
       }
     ]
   },
+  {
+    path: 'Admin/Login',
+    component: AdminLoginComponent
+  }
 ];
 
 @NgModule({

@@ -4,12 +4,11 @@ import { WishListService } from 'src/app/Services/WishList.service';
 import { ProductServiceService } from 'src/app/Services/product-service.service';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css'],
+  selector: 'app-admin-order',
+  templateUrl: './admin-order.component.html',
+  styleUrls: ['./admin-order.component.css'],
 })
-export class AdminDashboardComponent implements OnInit {
-  OrderCount!: number;
+export class AdminOrderComponent implements OnInit {OrderCount!: number;
   UserCount!: number;
   Total: number = 0;
   BillList: any[] = [];
@@ -24,16 +23,15 @@ export class AdminDashboardComponent implements OnInit {
   };
   constructor(
     private WishlistService: WishListService,
-    private productServices: ProductServiceService
+    private productServices: ProductServiceService // private route: Router
   ) {}
   ngOnInit(): void {
-    this.WishlistService.ChangeAdmin(0);
-
+    this.WishlistService.ChangeAdmin(3);
     this.productServices.GetAllBill().subscribe({
       next: (listBill) => {
         this.OrderCount = listBill.length;
         var x = 0;
-        for (var i = listBill.length-6; i < listBill.length; i++) {
+        for (var i = listBill.length - 6; i < listBill.length; i++) {
           this.GetBill(listBill[i], x);
           x++;
         }
@@ -48,7 +46,7 @@ export class AdminDashboardComponent implements OnInit {
   GetBill(bill: Bill, id: number) {
     this.Bill.id = id;
     this.Bill = bill;
-    this.Bill.createTime = bill.createTime.substring(0,10);
+    this.Bill.createTime = bill.createTime.substring(0, 10);
     this.GetNameUser(bill.user_id, id);
     this.BillList.push(this.Bill);
     this.Total += Number((bill.bill_Total = bill.bill_Total.replace('-', '')));

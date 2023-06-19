@@ -26,16 +26,16 @@ export class AdminFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.NameUser = sessionStorage.getItem('NameUser');
     if (this.NameUser == 'null') {
-      this.Route.navigate(['']);
+      this.Route.navigate(['Admin/Login']);
     } else {
-      this.Title = ['Dashboard', 'My Strore', 'User', 'Message', 'Team'];
-      this.check = [false, false, false, false, false];
+      this.Title = ['Dashboard', 'My Strore', 'User', 'Order'];
+      this.check = [false, false, false, false];
       setTimeout(() => {
         this.WishlistService.AdminCheckForm.subscribe({
           next: (num) => {
             if (num == -1) {
               this.Route.navigate(['admin/dashboard']);
-              this.check = [true, false, false, false, false];
+              this.check = [true, false, false, false];
             } else if (num != -1) {
               this.CheckBold(num);
             }
@@ -54,14 +54,11 @@ export class AdminFormComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('BagId', 'null');
     setTimeout(() => {
       location.reload();
-      this.Router('');
+      this.Route.navigate(['Admin/Login']);
     }, 500);
   }
-  Router(link: string) {
-    this.Route.navigate([link]);
-  }
   CheckBold(num: number) {
-    this.check = [false, false, false, false, false];
+    this.check = [false, false, false, false];
     this.check[num] = true;
   }
 }

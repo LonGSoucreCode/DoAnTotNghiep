@@ -1,0 +1,207 @@
+.Login__Form {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 2000;
+}
+
+.Login__Tag {
+  background-color: white;
+  border: solid 1px;
+  height: 500px;
+  width: 350px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.Top__Login {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.Top__Login p {
+  font-size: 18px;
+  margin: 0;
+  flex: 1;
+}
+
+.Top__Login i {
+  border-radius: 10px;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.SignInAndRegister {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  width: 100%;
+  border-bottom: 2px #e6e6e6 solid;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+}
+
+.SignInAndRegister p {
+  margin-right: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.Input__Login__Form {
+  height: 83%;
+  color: #727272;
+  font-size: 13px;
+  overflow-y: scroll;
+}
+
+.Input__Login p {
+  margin-bottom: 3px;
+}
+.Input__Login input,
+.Out__Login {
+  width: 99%;
+  height: 42px;
+  align-items: center;
+  border: solid 1px #727272;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 7px;
+  padding: 0 15px;
+}
+
+.Input__Login input:hover {
+  border-color: black;
+}
+
+.ForgetPassword {
+  text-decoration: underline;
+}
+
+.ForgetPassword:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.Button__Login{
+  width: 99%;
+  color: white;
+  background-color: black;
+  height: 42px;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 1px;
+  font-weight: bold;
+  opacity: 0.9;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.Button__Login:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.Login__Form h3 {
+  margin: 10px 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.Out__Login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: black;
+  font-weight: 600;
+  position: relative;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.Out__Login img {
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+  position: absolute;
+}
+.Facebook img,
+.Google img {
+  height: 20px;
+  top: 10px;
+  left: 10px;
+}
+.Google img {
+  height: 22px;
+  top: 10px;
+  left: 10px;
+}
+.Apple img {
+  height: 20px;
+  top: 9px;
+  left: 5px;
+}
+.Out__Login:hover {
+  background-color: #f5f5f5;
+}
+.none{
+  display: none;
+}
+.flexerror{
+  display: flex !important;
+}
+.normal{
+  font-weight: normal !important;
+}
+.error{
+  background-color: #ffeff1;
+  width: 99%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: none;
+  margin: 7px 0;
+  padding: 0 15px;
+  display: none;
+}
+.error p{
+  color: black;
+}
+.error i{
+  color: #c41429;
+  font-size: 20px;
+  margin-right: 10px;
+
+}
+.border{
+  color: red !important;
+  border-color: red !important;
+  display: block !important;
+}
+.name{
+  color: red !important;
+}
+.Input__Login .hide{
+  font-size: 10px !important;
+  display: none;
+}
+.checkbox{
+  display: flex;
+}.checkbox input{
+  margin-right: 10px;
+}
