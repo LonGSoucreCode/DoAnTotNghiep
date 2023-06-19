@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   UserCheck!: string;
   BagCount!: number;
   AccountCheck: boolean = false;
+  search!: string;
   constructor(
     private productServices: ProductServiceService,
     private WishListService: WishListService,
@@ -92,5 +93,13 @@ export class HeaderComponent implements OnInit {
   Router(link: string) {
     this.Route.navigate([link]);
     this.AccountClose();
+  }
+  Search(){
+    this.WishListService.GetSearch(this.search);
+    this.Route.navigate(['Search']);
+    sessionStorage.setItem('search', this.search);
+    setTimeout(() => {
+      location.reload();
+    }, 200);
   }
 }

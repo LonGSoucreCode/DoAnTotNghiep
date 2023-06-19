@@ -1,0 +1,381 @@
+.MainTittle__Form {
+  width: 100%;
+}
+.MainTittle__Form {
+  margin-left: 25px;
+}
+.WishList__Tittle {
+  width: 100%;
+  padding: 50px 32.5%;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.WishList__Tittle h1 {
+  font-weight: 700;
+}
+.WishList__Tittle p {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.WishList__Tittle .buynow__Form {
+  height: 45px;
+  border: 0.5px solid rgb(0, 0, 0);
+  padding: 0 10px;
+  border-radius: 5px;
+  margin: 5px auto;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 320px;
+  color: white;
+  background: #000;
+  font-weight: 600;
+}
+.WishList__Tittle .buynow__Form a {
+  font-size: 16px;
+  color: white;
+}
+
+.AllCard__FilterSort {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.FilteAndSort__Form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 0 25px;
+  margin-bottom: 10px;
+}
+.Filter__Product,
+.Sort_Product {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Filter__Product {
+  flex: 1;
+}
+.Sort_Product {
+  padding: 10px;
+  width: 17%;
+  justify-content: flex-end;
+}
+.BoxShadow__Sort {
+  box-shadow: 0px 0px 10px 5px #dcdcdc;
+}
+.Filter__Product p,
+.Sort_Product p {
+  margin-right: 8px;
+}
+.Filter__Product i,
+.Sort_Product i {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.AllCardAndFilter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.FilterCard__Search {
+  width: 25%;
+  position: sticky;
+  top: 180px;
+  z-index: 2;
+  position: -webkit-sticky;
+  align-self: flex-start;
+  margin-right: 50px;
+  font-size: 14px;
+}
+.SorCard__Search{
+  position: absolute;
+  width: 16.3%;
+  background-color: white;
+  right: 25px;
+  top: -10px;
+  z-index: 10;
+  font-size: 14px;
+  box-shadow: 0px 10px 10px 5px #dcdcdc;
+  padding-bottom: 20px;
+  display: none;
+}
+.ShowSort{
+  display: block;
+}
+.SorCard__Search ul {
+  list-style-type: none;
+}
+.SorCard__Search ul li {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 38px 10px 0;
+  cursor: pointer;
+}
+.SorCard__Search ul li:hover {
+  background-color: #f5f5f5;
+}
+.nav__link {
+  width: 100%;
+}
+.nav__link li {
+  list-style: none;
+}
+
+.dropdown {
+  list-style-type: none;
+  display: none;
+  line-height: 50px;
+  transition: all linear 0.3s;
+}
+.dropdown li:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.dropdown li input{
+  cursor: pointer;
+}
+.dropdown label {
+  width: 100%;
+}
+
+.nav__Dropdown,
+.nav__Dropdown__size {
+  display: flex;
+  height: 40px;
+  border-bottom: #e6e6e6 1px solid;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px 0 25px;
+  cursor: pointer;
+}
+.nav__Dropdown p,
+.nav__Dropdown__size p {
+  font-weight: 500;
+  flex: 1;
+}
+
+.category_submenu,
+.brand_submenu,
+.sale_submenu {
+  width: 100%;
+}
+.nav__Dropdown i,
+.nav__Dropdown__size i {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.show ul {
+  display: flex;
+  flex-direction: column;
+}
+.show .nav__Dropdown i {
+  transform: rotate(-180deg);
+}
+.show ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.category_submenu li,
+.brand_submenu li,
+.sale_submenu li {
+  width: 100%;
+}
+.category_submenu input[type="checkbox"],
+.brand_submenu input[type="checkbox"],
+.sale_submenu input[type="checkbox"] {
+  margin: 0 5px 0 25px;
+  transform: scale(1.5);
+  color: black;
+}
+.size_submenu {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  display: none;
+}
+.size_submenu li {
+  display: flex;
+  width: 21%;
+  height: 40px;
+  margin: 15px 6%;
+  border: #e6e6e6 solid 1px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 3px;
+}
+.size_submenu li:hover {
+  border: #b6b6b6 solid 1px;
+}
+
+.hide {
+  display: none;
+}
+.all__Card {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+  padding: 0 5px;
+}
+
+
+.card__Form {
+  width: 22%;
+  min-width: 300px;
+  margin: 0 1.5% 40px;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card__Form__Wishlist {
+  width: 13%;
+  margin: 0 1%;
+  background-color: white;
+  font-size: 15px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  position: relative;
+}
+
+.card__Form__Recommendations {
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  margin: 0 1% 40px 1%;
+  background-color: white;
+  font-size: 15px;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.card__title__Form {
+  font-weight: bold;
+}
+.card__Name__Form {
+  min-height: 45px;
+}
+.card__price__Form {
+  margin-bottom: 20px;
+}
+.Card__Bottom {
+  position: relative;
+  height: 110px;
+  background-color: white;
+  overflow: hidden;
+}
+.Card__Bottom:hover .Card__Bottom.hover{
+  opacity: 0;
+}
+.Card__Bottom:hover div.Card__Bottom__Hover{
+  opacity: 1;
+}
+.Card__Bottom__Hover{
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 2;
+  transition: all ease-in 0.1s;
+}
+.buynow__Form {
+  height: 45px;
+  border: 0.5px solid rgb(0, 0, 0);
+  padding: 0 10px;
+  border-radius: 5px;
+  margin: 5px auto;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.AddToBag {
+  width: 100%;
+  background: white;
+}
+.InYourBag {
+  width: 100%;
+  background: rgb(0, 0, 0);
+  color: white;
+  display: none;
+}
+.buynow__Form a {
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+}
+.InYourBag a {
+  background: rgb(0, 0, 0);
+  color: white;
+}
+.buynow__Form:hover {
+  opacity: 0.5;
+}
+.card__Size__Card {
+  width: 100%;
+  margin-bottom: 5px;
+}
+.Size__Shoes__Card {
+  width: 100%;
+  height: 45px;
+  border: 0.5px solid rgb(0, 0, 0);
+  padding: 0 10px;
+  border-radius: 5px;
+}
+.colorchange {
+  background: #191919;
+  color: #ffffff;
+}
+.tranform {
+  transform: rotate(-180deg);
+}
+.tranformsort {
+  transform: rotate(+180deg);
+}
+.none{
+  display: none;
+}
+.hide{
+  display: block;
+}
+.hideflex{
+  display: flex;
+}
+.with100{
+  width: 100%;
+}
+.UserBag__Tittle {
+  width: 100%;
+  margin: 25px auto;
+  padding: 0 30px;
+}
+.UserBag__Tittle h1 {
+  text-align: left;
+}
+.UserBag__Tittle p{
+  margin: 5px 0 20px 0;
+  font-size: 14px;
+}

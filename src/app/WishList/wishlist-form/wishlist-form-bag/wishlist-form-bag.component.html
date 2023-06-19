@@ -1,4 +1,7 @@
 
-<button class="buynow__Form" [class.InYourBag]="BagButton" (click)="BagClick(BagButton)">
+<button class="buynow__Form" [class.InYourBag]="BagButton" (click)="BagClick(BagButton)" *ngIf="NameUser != 'null'">
   <a>{{ Paraphrase }}</a>
+</button>
+<button class="buynow__Form"(click)="Login()" *ngIf="NameUser == 'null'">
+  <a>Add your Bag</a>
 </button>

@@ -1,0 +1,162 @@
+<div class="Form">
+  <div class="UserBag__Tittle">
+    <h1>SEARCH RESULTS</h1>
+    <div *ngIf="products.length > 0">
+      <p>Search instead for '{{search}}'</p>
+    </div>
+    <div *ngIf="products.length <= 0">
+      <p>Sorry, we can't find any results for '{{search}}'</p>
+        <p>We don't have what you're looking for this time, but why not take a look at our edits or recommendations made for you.<br>
+        Alternatively, shop by category or brand with the links below.</p>
+    </div>
+  </div>
+  <div class="AllCard__FilterSort" *ngIf="products.length > 0">
+    <div class="FilteAndSort__Form">
+      <div class="Filter__Product" (click)="Check(0)">
+        <p>Filter</p>
+        <i
+          class="bx bxs-chevron-left"
+          id="Filter"
+          [class.tranform]="check[0]"
+        ></i>
+      </div>
+      <div class="Sort_Product" (click)="Check(1)">
+        <p>Sort by</p>
+        <i class="bx bxs-chevron-down" [class.tranformsort]="check[1]"></i>
+      </div>
+    </div>
+    <div class="AllCardAndFilter">
+      <div class="SorCard__Search" [class.hide]="check[1]">
+        <ul (click)="Check(1)">
+          <li (click)="GetProduct()">Our Picks</li>
+          <li>Newest first</li>
+          <li (click)="Sort('High')">Price: high to low</li>
+          <li (click)="Sort('Low')">Price: low to high</li>
+        </ul>
+      </div>
+      <div
+        class="FilterCard__Search"
+        id="FilterCard__Search"
+        [class.none]="check[0]"
+      >
+        <ul class="nav__link">
+          <li>
+            <div class="nav__Dropdown" (click)="Check(2)">
+              <p>Category</p>
+              <i class="bx bxs-chevron-down" [class.tranform]="check[2]"></i>
+            </div>
+            <ul class="dropdown category_submenu" [class.hide]="check[2]">
+              <label
+                *ngFor="let Category of CategoryList"
+                for="{{ Category.category_Name }}"
+              >
+                <li>
+                  <input
+                    type="checkbox"
+                    id="{{ Category.category_Name }}"
+                    (click)="ClickCatefory(Category.category_id)"
+                  />
+                  {{ Category.category_Name }}
+                </li>
+              </label>
+            </ul>
+          </li>
+          <li>
+            <div class="nav__Dropdown" (click)="Check(3)">
+              <p>Brand</p>
+              <i class="bx bxs-chevron-down" [class.tranform]="check[3]"></i>
+            </div>
+            <ul class="dropdown brand_submenu" [class.hide]="check[3]">
+              <label
+                for="{{ brand.brand_Name }}"
+                *ngFor="let brand of BrandList"
+              >
+                <li>
+                  <input
+                    type="checkbox"
+                    id="{{ brand.brand_Name }}"
+                    (click)="ClickBrand(brand.brand_id)"
+                  />
+                  {{ brand.brand_Name }}
+                </li>
+              </label>
+            </ul>
+          </li>
+          <li>
+            <div class="nav__Dropdown__size" (click)="Check(4)">
+              <p>Size</p>
+              <i class="bx bxs-chevron-down" [class.tranform]="check[4]"></i>
+            </div>
+            <app-body-form-size
+              [check]="check[4]"
+              [MaxSize]="MaxSize"
+              [MinSize]="MinSize"
+              (newItemEvent)="ClickSize($event)"
+            ></app-body-form-size>
+          </li>
+          <li>
+            <div class="nav__Dropdown" (click)="Check(5)">
+              <p>Sale Discount</p>
+              <i class="bx bxs-chevron-down" [class.tranform]="check[5]"></i>
+            </div>
+            <ul class="dropdown sale_submenu" [class.hide]="check[5]">
+              <label for="cb_sale_0">
+                <li><input type="checkbox" id="cb_sale_0" /> No Discount</li>
+              </label>
+              <label for="cb_sale_5">
+                <li><input type="checkbox" id="cb_sale_5" /> 5%</li>
+              </label>
+              <label for="cb_sale_25">
+                <li><input type="checkbox" id="cb_sale_25" /> 25%</li>
+              </label>
+              <label for="cb_sale_50">
+                <li><input type="checkbox" id="cb_sale_50" /> 50%</li>
+              </label>
+            </ul>
+          </li>
+          <li>
+            <div class="nav__Dropdown">
+              <p>Price</p>
+              <i class="bx bxs-chevron-down"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="all__Card" [class.with100]="allcardcheck">
+        <div class="card__Form" *ngFor="let product of products">
+          <div class="Card__Top">
+            <app-icon-product
+              [id]="product.product_id"
+              [icon]="icon"
+              [size]="0"
+            ></app-icon-product>
+            <app-image-product
+              [id]="product.image_Product_id"
+              [routerLink]="[
+                'product/',
+                product.product_Name,
+                product.product_id
+              ]"
+            ></app-image-product>
+          </div>
+          <div
+            class="Card__Bottom"
+            [routerLink]="['product', product.product_Name, product.product_id]"
+          >
+            <app-brand [id]="product.brand_id"></app-brand>
+            <div class="card__Name__Form hover">{{ product.product_Name }}</div>
+            <div class="card__price__Form hover">
+              {{ product.product_Price }}
+            </div>
+            <div class="Card__Bottom__Hover">
+              <div class="card__title__Form">Available</div>
+              <div class="card__Name__Form">See all sizes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-contact-form></app-contact-form>

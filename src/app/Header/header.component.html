@@ -86,9 +86,9 @@
       <li><a href="#" style="color: #e71d34;">Sale</a></li>
     </ul>
     <ul class="Header__Search">
-      <input type="text" placeholder="Search" />
+      <input type="text" placeholder="Search" search="search" [(ngModel)]="search"/>
       <div>
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button (click)="Search()"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
     </ul>
   </div>

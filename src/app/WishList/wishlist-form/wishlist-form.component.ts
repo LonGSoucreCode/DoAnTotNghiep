@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BagProductAdd, WishListProduct } from 'src/app/Model/product.model';
 import { ProductServiceService } from 'src/app/Services/product-service.service';
 import { WishListService } from 'src/app/Services/WishList.service';
+import { getCookie, getCookies } from 'typescript-cookie';
 
 @Component({
   selector: 'app-wishlist-form',
@@ -39,17 +40,15 @@ export class WishlistFormComponent implements OnInit {
     private WishListService: WishListService,
     private route: Router
   ) {}
-
+  NameUser: any;
   async ngOnInit(): Promise<void> {
+    this.NameUser = sessionStorage.getItem('NameUser');
     this.wlid = sessionStorage.getItem('IdWishList');
     this.IDUSer = sessionStorage.getItem('IdUser');
     if (this.wlid != 'null') {
       this.ParagraphButton = 'Shop Now';
       this.Paragraph =
         'Add your favourite items to your wishlist and they’ll appear here.';
-      await this.WishListService.WishList.subscribe((c) => {
-        this.WishListCount = c;
-      });
       this.productServices.GetWishListAllProDuct(this.wlid).subscribe({
         next: (WishList) => {
           this.WishListProduct = WishList;
@@ -65,10 +64,18 @@ export class WishlistFormComponent implements OnInit {
         },
       });
     } else if (this.wlid == 'null') {
+      let array = String(getCookie('CookieProduct')).split(',');
+      if (array.length > 1) {
+        for (var i = 1; i < array.length; i++) {
+          this.GetProduct(Number(array[i]), 0, i - 1);
+        }
+      }
       this.ParagraphButton = 'Sign In';
       this.Paragraph =
         'Looking for your wishlist? Sign in to pick up where you left off.';
-      this.WishListCount = 0;
+      this.WishListService.WishList.subscribe((c) => {
+        this.WishListCount = c;
+      });
     }
     this.CheckList();
   }

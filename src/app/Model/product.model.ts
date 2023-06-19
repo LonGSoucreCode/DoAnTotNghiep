@@ -26,6 +26,7 @@ export interface brand {
 export interface Nsx {
   nsx_id: string;
   nsx_Name: string;
+  isActive: boolean;
 }
 export interface User {
   user_id: string;
@@ -102,6 +103,7 @@ export interface SizeOut {
 export interface Category {
   category_id: number;
   category_Name: string;
+  isActive: boolean;
 }
 export interface CTSizeOut {
   SizeID: number;

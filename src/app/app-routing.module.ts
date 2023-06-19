@@ -13,6 +13,7 @@ import { AdminFormComponent } from './Admin/admin-form/admin-form.component';
 import { AdminDashboardComponent } from './Admin/admin-form/admin-dashboard/admin-dashboard.component';
 import { AdminMystoreComponent } from './Admin/admin-form/admin-mystore/admin-mystore.component';
 import { AdminUserComponent } from './Admin/admin-form/admin-user/admin-user.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path:'Home',
     component: BodyFormComponent
+  },
+  {
+    path:'Search',
+    component: SearchFormComponent
   },
   {
     path:'WishList',

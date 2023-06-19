@@ -43,6 +43,8 @@ import { AdminFormComponent } from './Admin/admin-form/admin-form.component';
 import { AdminDashboardComponent } from './Admin/admin-form/admin-dashboard/admin-dashboard.component';
 import { AdminMystoreComponent } from './Admin/admin-form/admin-mystore/admin-mystore.component';
 import { AdminUserComponent } from './Admin/admin-form/admin-user/admin-user.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { AdminLoginComponent } from './Admin/admin-form/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,8 @@ import { AdminUserComponent } from './Admin/admin-form/admin-user/admin-user.com
     AdminDashboardComponent,
     AdminMystoreComponent,
     AdminUserComponent,
+    SearchFormComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,

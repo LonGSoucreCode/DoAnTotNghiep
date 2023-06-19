@@ -33,7 +33,9 @@ export class WishlistFormBagComponent implements OnInit, OnChanges {
     private WishListService: WishListService,
     private Route: Router
   ) {}
+  NameUser: any;
   ngOnChanges(changes: SimpleChanges): void {
+    this.NameUser = sessionStorage.getItem('NameUser');
     if (changes) {
       this.Bag.bag_id = Number(sessionStorage.getItem('IdWishList'));
       this.Bag.product_id = this.productid;
@@ -56,8 +58,7 @@ export class WishlistFormBagComponent implements OnInit, OnChanges {
         this.Paraphrase = 'In Your Bag';
         this.BagCount++;
         this.WishListService.BagUpdate(this.BagCount);
-      }
-      else{
+      } else {
         alert('no');
       }
     }
@@ -74,5 +75,8 @@ export class WishlistFormBagComponent implements OnInit, OnChanges {
         }
       },
     });
+  }
+  Login() {
+    this.WishListService.ChangeLoginCheck(false);
   }
 }

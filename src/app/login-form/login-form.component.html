@@ -16,7 +16,10 @@
         </div>
         <div class="Input__Login pass">
           <p>Password</p>
-          <input type="text" [(ngModel)]="User.password" [class.border]="LoginCheck[2]">
+          <input [type]="type" [(ngModel)]="User.password" [class.border]="LoginCheck[2]">
+        </div>
+        <div class="checkbox" (click)="ShowPass()">
+          <input type="checkbox">Show password
         </div>
         <div class="Input__Login error"  [class.flexerror]="LoginCheck[2]">
           <i class='bx bx-error-circle'></i>
@@ -38,8 +41,16 @@
         </div>
         <div class="Input__Login pass">
           <p>Password</p>
-          <input type="text" [(ngModel)]="UserRegister.password" [class.border]="CheckRegister[3]">
+          <input [type]="type2" [(ngModel)]="UserRegister.password" [class.border]="CheckRegister[3]">
           <p class="hide" [class.border]="CheckRegister[3]">* Must have at least 8 characters</p>
+        </div>
+        <div class="Input__Login pass">
+          <p>Confirm Password</p>
+          <input [type]="type2" [(ngModel)]="UserRegister.passwordcom" [class.border]="CheckRegister[4]">
+          <p class="hide" [class.border]="CheckRegister[4]">* Invalid password</p>
+        </div>
+        <div class="checkbox" (click)="ShowPass2()">
+          <input type="checkbox">Show password
         </div>
         <div class="Input__Login error"  [class.flexerror]="CheckRegister[0]">
           <i class='bx bx-error-circle'></i>
@@ -49,7 +60,7 @@
           join our loyalty programme</p>
           <button class="Button__Login" (click)="RegisterClick()">Register</button>
       </div>
-      <h3>OR</h3>
+      <!-- <h3>OR</h3>
       <div class="Out__Login Google">
         <div><img
             src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
@@ -66,7 +77,7 @@
             src="data:image/png;base64,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"
             alt=""></div>
         <p>Conntinue With Facebook</p>
-      </div>
+      </div> -->
 
     </div>
   </div>

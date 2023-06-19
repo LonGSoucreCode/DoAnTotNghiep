@@ -10,9 +10,9 @@ import { ProductServiceService } from 'src/app/Services/product-service.service'
 })
 export class AdminFormComponent implements OnInit, OnDestroy {
   check!: boolean[];
-  NameUser!: string;
   Title!: string[];
   Num!: number;
+  NameUser: any;
   constructor(
     private WishlistService: WishListService,
     private productServices: ProductServiceService,
@@ -24,24 +24,28 @@ export class AdminFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.Title = ['Dashboard','My Strore','User','Message','Team']
-    this.check = [false, false, false, false, false];
-    this.NameUser = String(sessionStorage.getItem('NameUser'));
-    setTimeout(() => {
-      this.WishlistService.AdminCheckForm.subscribe({
-        next: (num) => {
-          if (num == -1) {
-            this.Route.navigate(['admin/dashboard']);
-            this.check = [true, false, false, false, false];
-          } else if (num != -1) {
-            this.CheckBold(num);
-          }
-          this.Num = num;
-        },
-      });
-    }, 500);
-    this.WishlistService.ChangeFooterCheck(true);
-    this.WishlistService.ChangeHeaderCheck(true);
+    this.NameUser = sessionStorage.getItem('NameUser');
+    if (this.NameUser == 'null') {
+      this.Route.navigate(['']);
+    } else {
+      this.Title = ['Dashboard', 'My Strore', 'User', 'Message', 'Team'];
+      this.check = [false, false, false, false, false];
+      setTimeout(() => {
+        this.WishlistService.AdminCheckForm.subscribe({
+          next: (num) => {
+            if (num == -1) {
+              this.Route.navigate(['admin/dashboard']);
+              this.check = [true, false, false, false, false];
+            } else if (num != -1) {
+              this.CheckBold(num);
+            }
+            this.Num = num;
+          },
+        });
+      }, 500);
+      this.WishlistService.ChangeFooterCheck(true);
+      this.WishlistService.ChangeHeaderCheck(true);
+    }
   }
   SignOut() {
     sessionStorage.setItem('NameUser', 'null');
@@ -50,7 +54,7 @@ export class AdminFormComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('BagId', 'null');
     setTimeout(() => {
       location.reload();
-      this.Router('')
+      this.Router('');
     }, 500);
   }
   Router(link: string) {

@@ -11,10 +11,15 @@ export class WishListService {
   UserID!: number;
   IdWishList: number = Number(sessionStorage.getItem('IdWishList'));
   IdBag: number = Number(sessionStorage.getItem('IdBag'));
+  String: string = String(sessionStorage.getItem('search'));
 
   WishListCount: number = 0;
   private CountWishList = new BehaviorSubject<number>(this.WishListCount);
   WishList = this.CountWishList.asObservable();
+
+  SearchString: string = this.String;
+  private SearchBeha = new BehaviorSubject<string>(this.SearchString);
+  Search = this.SearchBeha.asObservable();
 
   BagCount: number = 0;
   private CountBag = new BehaviorSubject<number>(this.BagCount);
@@ -82,8 +87,8 @@ export class WishListService {
       if (getCookie('CookieProduct') == '0' || getCookie('CookieProduct') == null) {
         this.CountWishList.next(0);
       } else {
-        this.CountWishList.next(
-          (Number(String(getCookie('CookieProduct')).length) - 1) / 2
+        var string = String(getCookie('CookieProduct')).split(',');
+        this.CountWishList.next(string.length-1
         );
       }
     }
@@ -132,5 +137,8 @@ export class WishListService {
   ChangeMinMaxSize(min: number, max: number) {
     this.MinSizeCheck.next(min);
     this.MaxSizeCheck.next(max);
+  }
+  GetSearch(string: string) {
+    this.SearchBeha.next(string);
   }
 }

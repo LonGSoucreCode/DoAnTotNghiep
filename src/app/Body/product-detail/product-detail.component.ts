@@ -49,6 +49,7 @@ export class ProductDetailComponent implements OnInit {
   Nsx: Nsx = {
     nsx_id: '',
     nsx_Name: '',
+    isActive: false
   };
 
   DetailDelivery: boolean[] = [];

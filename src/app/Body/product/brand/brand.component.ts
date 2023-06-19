@@ -19,6 +19,7 @@ export class BrandComponent implements OnInit {
   Nsx: Nsx = {
     nsx_id: '',
     nsx_Name: '',
+    isActive: false
   };
   constructor(private productServices: ProductServiceService) {}
 

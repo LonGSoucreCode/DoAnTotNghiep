@@ -11,6 +11,8 @@ import { getCookie, removeCookie, setCookie } from 'typescript-cookie';
   styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent implements OnInit {
+  type: string = 'password';
+  type2: string = 'password';
   User: User = {
     user_id: '',
     Email: 'dieudo452',
@@ -30,10 +32,11 @@ export class LoginFormComponent implements OnInit {
     Name: '',
     Email: '',
     password: '',
+    passwordcom: '',
     firstName: '',
     lastName: '',
   };
-  CheckRegister: boolean[] = [false, false, false, false];
+  CheckRegister: boolean[] = [false, false, false, false, false];
   SaveName: string[] = [];
   check!: boolean;
   LoginCheck: boolean[] = [];
@@ -171,6 +174,7 @@ export class LoginFormComponent implements OnInit {
       this.CheckRegister[1] = false;
       this.CheckRegister[2] = false;
       this.CheckRegister[3] = false;
+      this.CheckRegister[4] = false;
 
       this.SaveName = this.UserRegister.Name.split([' ']);
       this.UserRegister.firstName = this.SaveName[0];
@@ -209,6 +213,7 @@ export class LoginFormComponent implements OnInit {
     this.NameCheck();
     this.EmailCheck();
     this.PasswordCheck();
+    this.PasswordComCheck();
   }
   NameCheck() {
     var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
@@ -248,6 +253,34 @@ export class LoginFormComponent implements OnInit {
     if (this.UserRegister.password.length > 8) {
       this.CheckRegister[0] = false;
       this.CheckRegister[3] = false;
+    }
+  }
+  PasswordComCheck() {
+    if (this.UserRegister.password.length < 8) {
+      this.CheckRegister[0] = true;
+      this.CheckRegister[4] = true;
+    }
+    if (this.UserRegister.password.length > 8) {
+      this.CheckRegister[0] = false;
+      this.CheckRegister[4] = false;
+    }
+    if(this.UserRegister.password != this.UserRegister.passwordcom){
+      this.CheckRegister[0] = true;
+      this.CheckRegister[4] = true;
+    }
+  }
+  ShowPass() {
+    if (this.type == 'text') {
+      this.type = 'password';
+    } else {
+      this.type = 'text';
+    }
+  }
+  ShowPass2() {
+    if (this.type2 == 'text') {
+      this.type2 = 'password';
+    } else {
+      this.type2 = 'text';
     }
   }
 }

@@ -40,6 +40,11 @@ export class ProductServiceService {
       this.baseAPIurl + '/api/product/getallproduct'
     );
   }
+  GetSearchProduct(search: string): Observable<product[]> {
+    return this.http.get<product[]>(
+      this.baseAPIurl + '/api/Product/Search?search=' + search
+    );
+  }
   GetAllImgProduct(): Observable<imageproduct[]> {
     return this.http.get<imageproduct[]>(
       this.baseAPIurl + '/api/imageproduct/getallimageproduct'
@@ -63,6 +68,11 @@ export class ProductServiceService {
   GetAllBrand(): Observable<brand[]> {
     return this.http.get<brand[]>(
       this.baseAPIurl + '/api/Brand/GetAllBrand'
+    );
+  }
+  GetAllNsx(): Observable<Nsx[]> {
+    return this.http.get<Nsx[]>(
+      this.baseAPIurl + '/api/Nsx/GetAllNsx'
     );
   }
   GetNsxByID(id: string): Observable<Nsx> {

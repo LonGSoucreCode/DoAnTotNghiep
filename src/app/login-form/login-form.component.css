@@ -200,3 +200,8 @@
   font-size: 10px !important;
   display: none;
 }
+.checkbox{
+  display: flex;
+}.checkbox input{
+  margin-right: 10px;
+}
