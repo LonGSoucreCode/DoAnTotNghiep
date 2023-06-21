@@ -28,6 +28,9 @@ export class AdminFormComponent implements OnInit, OnDestroy {
     if (this.NameUser == 'null') {
       this.Route.navigate(['Admin/Login']);
     } else {
+      if (sessionStorage.getItem('RoleUser') == '2') {
+        this.Route.navigate(['']);
+      }
       this.Title = ['Dashboard', 'My Strore', 'User', 'Order'];
       this.check = [false, false, false, false];
       setTimeout(() => {

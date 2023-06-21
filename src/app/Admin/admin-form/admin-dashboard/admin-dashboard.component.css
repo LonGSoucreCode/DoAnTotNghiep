@@ -1,0 +1,8 @@
+.order {
+  flex-grow: 1;
+  flex-basis: 500px;
+  height: 305px !important;
+  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: auto !important;
+}

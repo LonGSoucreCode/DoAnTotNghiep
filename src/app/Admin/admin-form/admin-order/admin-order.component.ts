@@ -21,6 +21,16 @@ export class AdminOrderComponent implements OnInit {OrderCount!: number;
     bill_Status: false,
     createTime: '',
   };
+  BillDetail: any = {
+    id: 0,
+    bill_id: 0,
+    name: '',
+    bill_Count: 0,
+    bill_Total: '',
+    bill_Status: false,
+    createTime: '',
+  };
+  BillCheck: boolean = false;
   constructor(
     private WishlistService: WishListService,
     private productServices: ProductServiceService // private route: Router
@@ -31,7 +41,7 @@ export class AdminOrderComponent implements OnInit {OrderCount!: number;
       next: (listBill) => {
         this.OrderCount = listBill.length;
         var x = 0;
-        for (var i = listBill.length - 6; i < listBill.length; i++) {
+        for (var i = 0; i < listBill.length; i++) {
           this.GetBill(listBill[i], x);
           x++;
         }
@@ -57,5 +67,13 @@ export class AdminOrderComponent implements OnInit {OrderCount!: number;
         this.BillList[id].name = user.firstName + ' ' + user.lastName;
       },
     });
+  }
+  show(bill: Bill){
+    this.BillCheck = true;
+    this.BillDetail = bill;
+  }
+  Back(){
+    this.BillCheck = false;
+    this.BillDetail = null;
   }
 }

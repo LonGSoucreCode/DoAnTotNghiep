@@ -48,7 +48,8 @@
           </td>
           <td>${{bill.bill_Total}}</td>
           <td>{{bill.createTime}}</td>
-          <td><span class="status completed">Completed</span></td>
+          <td *ngIf="bill.bill_Status == false"><span class="status false">In Progress</span></td>
+          <td *ngIf="bill.bill_Status == true"><span class="status true">Completed</span></td>
         </tr>
       </tbody>
     </table>

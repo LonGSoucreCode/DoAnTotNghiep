@@ -1,0 +1,9 @@
+.search {
+  margin-right: -10px !important;
+}
+button {
+  padding: 3px 10px;
+  border: 5px;
+  background: none;
+  cursor: pointer;
+}

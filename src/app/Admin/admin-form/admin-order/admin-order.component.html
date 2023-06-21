@@ -2,6 +2,7 @@
   <div class="order">
     <div class="head">
       <h3>Order List</h3>
+      <input type="text" class="search" />
       <i class="bx bx-search"></i>
       <i class="bx bx-filter"></i>
     </div>
@@ -15,17 +16,43 @@
           <th>Status</th>
         </tr>
       </thead>
-      <tbody>
-        <tr *ngFor="let bill of BillList">
-          <td>{{bill.bill_id}}</td>
+      <tbody *ngIf="BillCheck == false">
+        <tr *ngFor="let bill of BillList" (click)="show(bill)">
+          <td>{{ bill.bill_id }}</td>
           <td>
-            <p>{{bill.name}}</p>
+            <p>{{ bill.name }}</p>
           </td>
-          <td>${{bill.bill_Total}}</td>
-          <td>{{bill.createTime}}</td>
-          <td><span class="status completed">Completed</span></td>
+          <td>${{ bill.bill_Total }}</td>
+          <td>{{ bill.createTime }}</td>
+          <td *ngIf="bill.bill_Status == false">
+            <span class="status false">In Progress</span>
+          </td>
+          <td *ngIf="bill.bill_Status == true">
+            <span class="status true">Completed</span>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="BillCheck == true">
+        <tr>
+          <td>{{ BillDetail.bill_id }}</td>
+          <td>
+            <p>{{ BillDetail.name }}</p>
+          </td>
+          <td>${{ BillDetail.bill_Total }}</td>
+          <td>{{ BillDetail.createTime }}</td>
+          <td *ngIf="BillDetail.bill_Status == false">
+            <span class="status false">In Progress</span>
+          </td>
+          <td *ngIf="BillDetail.bill_Status == true">
+            <span class="status true">Completed</span>
+          </td>
         </tr>
       </tbody>
     </table>
+    <!-- <p style="margin: 10px 0; border-bottom: 1px solid var(--grey);">Detail</p> -->
+    <div *ngIf="BillCheck == true" style="border-top: 1px solid var(--grey);padding-top: 10px;">
+      <app-bill-productlist [BillID]="BillDetail.bill_id"></app-bill-productlist>
+      <button (click)="Back()">Back</button>
+    </div>
   </div>
 </div>

@@ -33,7 +33,8 @@ export class AdminDashboardComponent implements OnInit {
       next: (listBill) => {
         this.OrderCount = listBill.length;
         var x = 0;
-        for (var i = listBill.length-6; i < listBill.length; i++) {
+        for (var i = listBill.length-5; i < listBill.length; i++) {
+          if(listBill)
           this.GetBill(listBill[i], x);
           x++;
         }
@@ -50,6 +51,7 @@ export class AdminDashboardComponent implements OnInit {
     this.Bill = bill;
     this.Bill.createTime = bill.createTime.substring(0,10);
     this.GetNameUser(bill.user_id, id);
+    this.Bill.bill_Status = bill.bill_Status;
     this.BillList.push(this.Bill);
     this.Total += Number((bill.bill_Total = bill.bill_Total.replace('-', '')));
   }

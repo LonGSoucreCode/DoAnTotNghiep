@@ -8,10 +8,9 @@ import { getCookie, removeCookie, setCookie } from 'typescript-cookie';
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.css']
+  styleUrls: ['./admin-login.component.css'],
 })
-
-export class AdminLoginComponent implements OnInit, OnDestroy{
+export class AdminLoginComponent implements OnInit, OnDestroy {
   type: string = 'password';
   type2: string = 'password';
   User: User = {
@@ -55,7 +54,12 @@ export class AdminLoginComponent implements OnInit, OnDestroy{
     // 0 signin
     // 1 register
     // 2 error
-
+    if (sessionStorage.getItem('RoleUser') == '2') {
+      this.route.navigate(['']);
+    }
+    else if(sessionStorage.getItem('RoleUser') == '1'){
+      this.route.navigate(['admin']);
+    }
     this.WishListService.ChangeFooterCheck(true);
     this.WishListService.ChangeHeaderCheck(true);
   }

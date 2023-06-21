@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
             'NameUser',
             user.firstName + ' ' + user.lastName
           );
+          sessionStorage.setItem('RoleUser', String(user.role_id));
           sessionStorage.setItem('IdUser', user.user_id);
           this.productServices
             .GetWishListByUserID(Number(user.user_id))
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit {
       });
       console.log(
         sessionStorage.getItem('NameUser'),
+        sessionStorage.getItem('RoleUser'),
         sessionStorage.getItem('IdUser'),
         sessionStorage.getItem('IdWishList'),
         sessionStorage.getItem('IdBag')
@@ -67,15 +69,10 @@ export class AppComponent implements OnInit {
         setCookie('CookieProduct','0',{path: '/'});
       }
       sessionStorage.setItem('NameUser', 'null');
+      sessionStorage.setItem('RoleUser', 'null');
       sessionStorage.setItem('IdUser', 'null');
       sessionStorage.setItem('IdWishList', 'null');
       sessionStorage.setItem('IdBag', 'null');
-      console.log(
-        sessionStorage.getItem('NameUser'),
-        sessionStorage.getItem('IdUser'),
-        sessionStorage.getItem('IdWishList'),
-        sessionStorage.getItem('IdBag'),
-      );
     }
   }
   title = 'ShoeSneaker';

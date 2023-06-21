@@ -45,6 +45,9 @@ export class WishlistFormComponent implements OnInit {
     this.NameUser = sessionStorage.getItem('NameUser');
     this.wlid = sessionStorage.getItem('IdWishList');
     this.IDUSer = sessionStorage.getItem('IdUser');
+    this.WishListService.WishList.subscribe((c) => {
+      this.WishListCount = c;
+    });
     if (this.wlid != 'null') {
       this.ParagraphButton = 'Shop Now';
       this.Paragraph =
@@ -73,9 +76,6 @@ export class WishlistFormComponent implements OnInit {
       this.ParagraphButton = 'Sign In';
       this.Paragraph =
         'Looking for your wishlist? Sign in to pick up where you left off.';
-      this.WishListService.WishList.subscribe((c) => {
-        this.WishListCount = c;
-      });
     }
     this.CheckList();
   }

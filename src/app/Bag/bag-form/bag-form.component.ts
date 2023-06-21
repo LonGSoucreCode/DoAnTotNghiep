@@ -41,7 +41,7 @@ export class BagFormComponent implements OnInit {
     bill_Count: 0,
     bill_Total: '',
     bill_Status: false,
-    createTime: ''
+    createTime: '',
   };
   UserUpdate: UpdateUser = {
     user_id: 0,
@@ -52,8 +52,8 @@ export class BagFormComponent implements OnInit {
     product_id: 0,
     product_price: '',
     size_id: 0,
-    createTime: ''
-  }
+    createTime: '',
+  };
   String: string = 'Go To Checkout';
   NameUser: any;
   ListProduct: any[] = [];
@@ -67,6 +67,8 @@ export class BagFormComponent implements OnInit {
   SavePrice: string = '';
   Credit: number = 0;
   CancelBill!: boolean;
+  OrderCheck!: boolean;
+  CheckOutBool: boolean[] = [true, true];
   constructor(
     private productServices: ProductServiceService,
     private WishListService: WishListService,
@@ -109,9 +111,10 @@ export class BagFormComponent implements OnInit {
       });
       this.productServices.GetBillByUser(this.Bill.user_id).subscribe({
         next: (bill) => {
+          console.log(bill);
           this.Bill.bill_id = bill.bill_id;
           this.BillProduct.bill_id = bill.bill_id;
-          if (bill.bill_Status == false && bill.bill_Count > 0) {
+          if (bill.bill_Total != '0' && bill.bill_Count > 0) {
             this.String = 'Done';
           }
         },
@@ -126,7 +129,7 @@ export class BagFormComponent implements OnInit {
         this.SavePrice = product.product_Price.replace('$', '');
         this.SavePrice = this.SavePrice.replace(',', '');
         this.product.size_id = size;
-        this.TotalCount(idproduct, size, this.SavePrice,id);
+        this.TotalCount(idproduct, size, this.SavePrice, id);
         this.product.quality = quality;
         this.ListProduct.push(product);
       },
@@ -160,17 +163,13 @@ export class BagFormComponent implements OnInit {
     }, 1000);
   }
   TotalCount(productid: number, sizeid: number, price: string, id: number) {
-    this.productServices
-        .GetSizeByCTSizeId(productid, sizeid)
-        .subscribe({
-          next: (product) => {
-            price = String(
-              Number(price) + Number(product.size_Surcharges)
-            );
-            this.ListProduct[id].product_Price = '$' + price;
-            this.Total += Number(price);
-          },
-        });
+    this.productServices.GetSizeByCTSizeId(productid, sizeid).subscribe({
+      next: (product) => {
+        price = String(Number(price) + Number(product.size_Surcharges));
+        this.ListProduct[id].product_Price = '$' + price;
+        this.Total += Number(price);
+      },
+    });
   }
   Router(name: string, id: number, size: number) {
     if (size == 0) {
@@ -187,46 +186,55 @@ export class BagFormComponent implements OnInit {
     var TotalNumber = this.Total + this.Delivery;
     this.Bill.bill_Total = String(TotalNumber).replace('.00', '');
     if (string == 'Go To Checkout') {
+      this.OrderCheck = false;
       this.CancelBill = true;
       this.String = 'Save and Continue';
-      this.productServices.GetBillByUser(this.Bill.user_id).subscribe({
-        next: (bill) => {
-          this.Bill.bill_id = bill.bill_id;
-          if (bill.bill_Status == false) {
-            this.Bill.bill_Count = this.ListProduct.length;
-            this.productServices.UpdateBill(this.Bill).subscribe();
-          } else {
-            this.productServices.CreateBill(this.Bill).subscribe();
-          }
-        },
-      });
+    } else if (string == 'Go To Order') {
+      this.OrderCheck = true;
+      this.CancelBill = true;
+      this.String = 'Save and Continue';
     } else if (string == 'Save and Continue') {
-      if (this.Credit < Number(this.Bill.bill_Total)) {
-        alert('So Du Khong Du');
-        this.Cancel();
-      } else {
+      if (this.OrderCheck == true) {
         this.CancelBill = false;
         this.String = 'Done';
+      } else if (this.OrderCheck == false) {
+        if (this.Credit < Number(this.Bill.bill_Total)) {
+          alert('So Du Khong Du');
+          this.Cancel();
+          this.String = 'Go To Order';
+        } else {
+          this.CancelBill = false;
+          this.String = 'Done';
+        }
       }
     } else if (string == 'Done') {
       this.ListProduct.forEach((product) => {
         this.BillProduct.product_id = product.product_id;
         this.BillProduct.product_price = product.product_Price;
         this.BillProduct.size_id = product.size_id;
-        this.productServices.CreateBillProduct(this.BillProduct ).subscribe();
+        this.productServices.CreateBillProduct(this.BillProduct).subscribe();
         this.DeleteBag(product.product_id, product.size_id);
       });
       this.BagCount = 0;
       this.WishListService.BagUpdate(this.BagCount);
-      this.UserUpdate.credit = String(this.Credit - Number(this.Bill.bill_Total))
-      this.productServices.UpdateUser(this.UserUpdate).subscribe();
-      this.Bill.bill_Status = true;
-      this.Bill.bill_Total ='-' + this.Bill.bill_Total;
+
+      if (this.OrderCheck == true) {
+        this.Bill.bill_Status = false;
+      } else if (this.OrderCheck == false) {
+        this.UserUpdate.credit = String(
+          this.Credit - Number(this.Bill.bill_Total)
+        );
+        this.productServices.UpdateUser(this.UserUpdate).subscribe();
+        this.Bill.bill_Status = true;
+      }
+
+      this.Bill.bill_Count = this.ListProduct.length;
+      this.Bill.bill_Total = '-' + String(TotalNumber).replace('.00', '');
       this.productServices.UpdateBill(this.Bill).subscribe();
 
       this.Bill.bill_Count = 0;
-      this.Bill.bill_Status = false;
-      this.Bill.bill_Total = '0' ;
+      this.Bill.bill_Status = true;
+      this.Bill.bill_Total = '0';
       this.productServices.CreateBill(this.Bill).subscribe();
     }
   }
