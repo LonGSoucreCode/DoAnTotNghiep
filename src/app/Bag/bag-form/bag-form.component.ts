@@ -43,6 +43,14 @@ export class BagFormComponent implements OnInit {
     bill_Status: false,
     createTime: '',
   };
+  BillCreate: Bill = {
+    bill_id: 0,
+    user_id: 0,
+    bill_Count: 0,
+    bill_Total: '0',
+    bill_Status: false,
+    createTime: '',
+  };
   UserUpdate: UpdateUser = {
     user_id: 0,
     credit: '',
@@ -106,16 +114,6 @@ export class BagFormComponent implements OnInit {
             );
             this.check[i + 1] = false;
             this.checkopacity[i + 1] = false;
-          }
-        },
-      });
-      this.productServices.GetBillByUser(this.Bill.user_id).subscribe({
-        next: (bill) => {
-          console.log(bill);
-          this.Bill.bill_id = bill.bill_id;
-          this.BillProduct.bill_id = bill.bill_id;
-          if (bill.bill_Total != '0' && bill.bill_Count > 0) {
-            this.String = 'Done';
           }
         },
       });
@@ -186,6 +184,22 @@ export class BagFormComponent implements OnInit {
     var TotalNumber = this.Total + this.Delivery;
     this.Bill.bill_Total = String(TotalNumber).replace('.00', '');
     if (string == 'Go To Checkout') {
+      this.productServices.GetAllBillByUser(this.Bill.user_id).subscribe({
+        next: (bill) => {
+          if (bill.length > 0) {
+            this.Bill.bill_id = bill[bill.length - 1].bill_id;
+            this.BillProduct.bill_id = bill[bill.length - 1].bill_id;
+          } else if (bill.length == 0) {
+            this.BillCreate.user_id = this.Bill.user_id;
+            this.productServices.CreateBill(this.BillCreate).subscribe({
+              next: (bill) => {
+                this.Bill.bill_id = bill.bill_id;
+                this.BillProduct.bill_id = bill.bill_id;
+              },
+            });
+          }
+        },
+      });
       this.OrderCheck = false;
       this.CancelBill = true;
       this.String = 'Save and Continue';

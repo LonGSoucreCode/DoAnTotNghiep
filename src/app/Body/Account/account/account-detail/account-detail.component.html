@@ -7,17 +7,24 @@
     <li><h5>Last name</h5></li>
     <li><h5>Email address</h5></li>
     <li><h5>Phone number</h5></li>
-    <li><h5>Date of birth</h5></li>
-    <li><h5>Gender</h5></li>
+    <li><h5>Address</h5></li>
     <li><h5>Passsword</h5></li>
   </ul>
-  <ul>
+  <ul *ngIf="UpdateCheck == false">
     <li><p>{{User.firstName}}</p></li>
     <li><p>{{User.lastName}}</p></li>
     <li><p>{{User.email}}@gmail.com</p></li>
-    <li><p>{{User.phone}}</p></li>
-    <li><p>--/--/--</p></li>
-    <li><p>Male</p></li>
+    <li><p>-{{User.phone}}-</p></li>
+    <li><p>{{User.address}}.</p></li>
+    <li><p>******</p></li>
+  </ul>
+  <ul *ngIf="UpdateCheck == true">
+    <li><input type="text" [(ngModel)]="User.firstName"><i class='bx bxs-pencil'></i></li>
+    <li><input type="text" [(ngModel)]="User.lastName"><i class='bx bxs-pencil'></i></li>
+    <li><p>{{User.email}}@gmail.com</p></li>
+    <li><input type="text" [(ngModel)]="User.phone"><i class='bx bxs-pencil'></i></li>
+    <li><input type="text" [(ngModel)]="User.address"><i class='bx bxs-pencil'></i></li>
     <li><p>******</p></li>
   </ul>
 </div>
+<button (click)="update()">{{String}}</button>

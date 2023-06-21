@@ -18,8 +18,10 @@ export class AccountDetailComponent implements OnInit {
     firstName: '',
     lastName: '',
     phone: '',
-    credit: ''
+    credit: '',
   };
+  UpdateCheck: boolean = false;
+  String: string = 'Update';
   constructor(
     private ProductService: ProductServiceService,
     private WishlistService: WishListService
@@ -32,5 +34,15 @@ export class AccountDetailComponent implements OnInit {
         this.User = user;
       },
     });
+  }
+  update() {
+    if (this.String == 'Update') {
+      this.UpdateCheck = true;
+      this.String = 'Back';
+    } else if (this.String == 'Back') {
+      this.ProductService.UpdateDetailUser(this.User).subscribe({});
+      this.UpdateCheck = false;
+      this.String = 'Update';
+    }
   }
 }

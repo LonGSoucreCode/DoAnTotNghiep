@@ -192,16 +192,13 @@ export class LoginFormComponent implements OnInit {
           } else if (num == -1) {
             this.User.Email = this.UserRegister.Email;
             this.User.password = this.UserRegister.password;
-            this.productServices.Register(this.UserRegister).subscribe({
-              next: (num) => {
-                console.log(num);
-              },
-            });
-            this.LoginClick();
+            this.productServices.Register(this.UserRegister).subscribe({});
+            setTimeout(() => {
+              this.LoginClick();
+            }, 500);
           }
         },
       });
-      console.log(this.UserRegister);
     }
   }
   RegisterCheck() {

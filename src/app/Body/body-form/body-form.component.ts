@@ -56,7 +56,6 @@ export class BodyFormComponent implements OnInit {
     this.UserCheck = String(sessionStorage.getItem('NameUser'));
     this.GetProduct();
     this.CookieProduct = String(getCookie('CookieProduct'));
-    console.log(this.CookieProduct);
     this.WishListService.WishList.subscribe((c) => {
       this.count = c;
     });

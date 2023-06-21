@@ -8,10 +8,10 @@ import { ProductServiceService } from 'src/app/Services/product-service.service'
   templateUrl: './admin-order.component.html',
   styleUrls: ['./admin-order.component.css'],
 })
-export class AdminOrderComponent implements OnInit {OrderCount!: number;
-  UserCount!: number;
-  Total: number = 0;
+export class AdminOrderComponent implements OnInit {
   BillList: any[] = [];
+  Total: number = 0;
+  search!: string;
   Bill: any = {
     id: 0,
     bill_id: 0,
@@ -31,27 +31,15 @@ export class AdminOrderComponent implements OnInit {OrderCount!: number;
     createTime: '',
   };
   BillCheck: boolean = false;
+  SearchCheck: boolean = false;
+  SortCheck: boolean = true;
   constructor(
     private WishlistService: WishListService,
     private productServices: ProductServiceService // private route: Router
   ) {}
   ngOnInit(): void {
     this.WishlistService.ChangeAdmin(3);
-    this.productServices.GetAllBill().subscribe({
-      next: (listBill) => {
-        this.OrderCount = listBill.length;
-        var x = 0;
-        for (var i = 0; i < listBill.length; i++) {
-          this.GetBill(listBill[i], x);
-          x++;
-        }
-      },
-    });
-    this.productServices.GetAllUser().subscribe({
-      next: (listuser) => {
-        this.UserCount = listuser.length;
-      },
-    });
+    this.ListBill();
   }
   GetBill(bill: Bill, id: number) {
     this.Bill.id = id;
@@ -68,12 +56,56 @@ export class AdminOrderComponent implements OnInit {OrderCount!: number;
       },
     });
   }
-  show(bill: Bill){
+  show(bill: Bill) {
     this.BillCheck = true;
     this.BillDetail = bill;
   }
-  Back(){
+  Back() {
     this.BillCheck = false;
     this.BillDetail = null;
+  }
+  Search() {
+    if (this.SearchCheck == true) {
+      this.BillList = [];
+      if (this.search == '') {
+        this.ListBill();
+        this.SearchCheck = false;
+      } else {
+        this.productServices.SearchBill(this.search).subscribe({
+          next: (listBill) => {
+            for (var i = 0; i < listBill.length; i++) {
+              this.GetBill(listBill[i], i);
+            }
+          },
+        });
+      }
+    } else if (this.SearchCheck == false) {
+      this.SearchCheck = true;
+    }
+  }
+  ListBill() {
+    this.productServices.GetAllBill().subscribe({
+      next: (listBill) => {
+        for (var i = 0; i < listBill.length; i++) {
+          this.GetBill(listBill[i], i);
+        }
+      },
+    });
+  }
+  Sort() {
+    this.BillList = [];
+    if (this.SortCheck == false) {
+      this.ListBill();
+      this.SortCheck = true;
+    } else if (this.SortCheck == true) {
+      this.productServices.SortBill().subscribe({
+        next: (listBill) => {
+          for (var i = 0; i < listBill.length; i++) {
+            this.GetBill(listBill[i], i);
+          }
+        },
+      });
+      this.SortCheck = false;
+    }
   }
 }

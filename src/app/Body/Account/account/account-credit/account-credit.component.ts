@@ -46,7 +46,7 @@ export class AccountCreditComponent implements OnInit {
     this.ProductService.GetAllBillByUser(this.UserID).subscribe({
       next: (ListBill) => {
         for(var i = 0; i < ListBill.length ; i++){
-          if(ListBill[i].bill_Status == true){
+          if(ListBill[i].bill_Count > 0 || ListBill[i].bill_Total != '0'){
             this.Bill = ListBill[i];
             this.Bill.id = i+1;
             this.BillList.push(this.Bill);

@@ -17,6 +17,7 @@ import {
   SizeProduct,
   UpdateUser,
   User,
+  UserDetail,
   WishListProduct,
   WishListProductUpdate,
   WishListUser,
@@ -86,6 +87,9 @@ export class ProductServiceService {
   }
   UpdateUser(user: UpdateUser): Observable<number> {
     return this.http.post<number>(this.baseAPIurl + '/api/User/UpdateUser', user);
+  }
+  UpdateDetailUser(user: UserDetail): Observable<UserDetail> {
+    return this.http.post<UserDetail>(this.baseAPIurl + '/api/User/UpdateDetailUser', user);
   }
   CheckEmailUser(email: string): Observable<number>{
     return this.http.get<number>(this.baseAPIurl + '/api/User/CheckEmailUser?email='+email)
@@ -268,6 +272,28 @@ export class ProductServiceService {
   GetListCode(code: number): Observable<ListCode[]> {
     return this.http.get<ListCode[]>(
       this.baseAPIurl + '/api/ListCode/GetCode'+code
+    );
+  }
+
+  SortBill(): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      this.baseAPIurl + '/api/Bill/SortBill'
+    );
+  }
+  SearchBill(search: string): Observable<Bill[]> {
+    return this.http.get<Bill[]>(
+      this.baseAPIurl + '/api/Bill/SearchBill?search=' + search
+    );
+  }
+
+  SortUser(): Observable<User[]> {
+    return this.http.get<User[]>(
+      this.baseAPIurl + '/api/User/SortUser'
+    );
+  }
+  SearchUser(search: string): Observable<User[]> {
+    return this.http.get<User[]>(
+      this.baseAPIurl + '/api/User/SearchUser?search='+search
     );
   }
 }

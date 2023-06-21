@@ -1,6 +1,4 @@
-/* .MainContent__Detail {
-  height: 11%;
-} */
+
 .Right__Account__Title {
   font-size: 24px;
   margin-bottom: 25px;
@@ -16,6 +14,11 @@
 .Right__Detail li {
   display: flex;
 }
+.Right__Detail li i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .Right__Detail h5 {
   padding-right: 150px;
 }
@@ -25,4 +28,9 @@ h3 {
 }
 p {
   font-size: 13px;
+}
+input{
+  border: none;
+  font-size: 13px;
+  line-height: 2;
 }

@@ -21,6 +21,9 @@ export class AdminUserComponent implements OnInit {
     credit: '',
     Status: '',
   };
+  SearchCheck: boolean = false;
+  SortCheck: boolean = true;
+  search!: string;
   constructor(
     private WishlistService: WishListService,
     private productServices: ProductServiceService // private route: Router
@@ -32,17 +35,11 @@ export class AdminUserComponent implements OnInit {
         this.ListCode = list;
       },
     });
-    this.productServices.GetAllUser().subscribe({
-      next: (listuser) => {
-        for (var i = 0; i < listuser.length; i++) {
-          this.GetUser(listuser[i],i);
-        }
-      },
-    });
+    this.GetListUser();
   }
-  GetUser(user: any,id: number) {
+  GetUser(user: any, id: number) {
     this.User = user;
-    this.User.id = id+1;
+    this.User.id = id + 1;
     setTimeout(() => {
       this.GetActive(user.isActive, user.id);
     }, 500);
@@ -50,9 +47,53 @@ export class AdminUserComponent implements OnInit {
   }
   GetActive(active: boolean, id: number) {
     if (active == true) {
-      this.ListUser[id-1].Status = 'Active';
+      this.ListUser[id - 1].Status = 'Active';
     } else {
-      this.ListUser[id-1].Status = 'Delete';
+      this.ListUser[id - 1].Status = 'Delete';
     }
+  }
+  Search() {
+    if (this.SearchCheck == true) {
+      this.ListUser = [];
+      if (this.search == '') {
+        this.GetListUser();
+        this.SearchCheck = false;
+      } else {
+        this.productServices.SearchUser(this.search).subscribe({
+          next: (listBill) => {
+            for (var i = 0; i < listBill.length; i++) {
+              this.GetUser(listBill[i], i);
+            }
+          },
+        });
+      }
+    } else if (this.SearchCheck == false) {
+      this.SearchCheck = true;
+    }
+  }
+  Sort() {
+    this.ListUser = [];
+    if (this.SortCheck == false) {
+      this.GetListUser();
+      this.SortCheck = true;
+    } else if (this.SortCheck == true) {
+      this.productServices.SortUser().subscribe({
+        next: (listuser) => {
+          for (var i = 0; i < listuser.length; i++) {
+            this.GetUser(listuser[i], i);
+          }
+        },
+      });
+      this.SortCheck = false;
+    }
+  }
+  GetListUser() {
+    this.productServices.GetAllUser().subscribe({
+      next: (listuser) => {
+        for (var i = 0; i < listuser.length; i++) {
+          this.GetUser(listuser[i], i);
+        }
+      },
+    });
   }
 }

@@ -43,7 +43,7 @@ export class AccountOrderandreturnComponent implements OnInit {
     this.productServices.GetAllBillByUser(this.IdUser).subscribe({
       next: (ListBill) => {
         for (var i = 0; i < ListBill.length; i++) {
-          if (ListBill[i].bill_Status == true) {
+          if (ListBill[i].bill_Count > 0 || ListBill[i].bill_Total != '0') {
             this.BillCheck[i] = true;
             this.Bill = ListBill[i];
             this.Bill.id = i + 1;
