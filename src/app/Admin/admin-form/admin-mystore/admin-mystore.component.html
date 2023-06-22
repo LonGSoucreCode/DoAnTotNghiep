@@ -6,7 +6,7 @@
       <p (click)="ChangeList(2)">Brand</p>
       <p (click)="ChangeList(4)">Nsx</p>
       <p (click)="ChangeList(5)">Category</p>
-      <p (click)="AddProduct()">+</p>
+      <p (click)="Add()">+</p>
       <p>-</p>
       <i class="bx bx-search"></i>
       <i class="bx bx-filter"></i>
@@ -68,10 +68,8 @@
   </div>
 </div>
 
-<div class="Head" *ngIf="Num > 5">
-  <p>Back</p>
-</div>
-<div class="Form" *ngIf="Num > 5">
+
+<div class="Form" *ngIf="Num > 5 && Choose == 1">
   <div class="Info">
     <p>Name</p>
     <input type="text" placeholder="Product Name" />
@@ -110,4 +108,20 @@
       <input type="file" (change)="UploadCondImg($event)" *ngIf="img.image_Product_Cond == ''"/>
     </div>
   </div>
+</div>
+
+<div class="Form" *ngIf="Num > 5 && Choose == 2">
+  <div class="Info">
+    <p>Brand Name</p>
+    <input type="text" placeholder="Product Name" [(ngModel)]="BrandAdd.brand_Name"/>
+    <p>Nsx</p>
+    <select>
+      <option></option>
+      <option *ngFor="let nsx of ListNsx" (click)="ClickNsx(nsx.nsx_id)">{{nsx.nsx_Name}}</option>
+    </select>
+    <p (click)="AddBrand()">Add</p>
+  </div>
+</div>
+<div class="Head" *ngIf="Num > 5">
+  <p (click)="Back()">Back</p>
 </div>

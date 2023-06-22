@@ -50,12 +50,18 @@ export class AdminMystoreComponent implements OnInit {
     nsx_Name: '',
     Status: '',
   };
+  ListNsx: any[] = [];
   Category: any = {
     id: 0,
     category_id: 0,
     category_Name: '',
     Status: '',
   };
+  BrandAdd: any = {
+    brand_Name: '',
+    nsx: 0,
+  };
+  Choose: number = 1;
   ListBrand: any[] = [];
   ListCode: ListCode[] = [];
   http: any;
@@ -71,6 +77,7 @@ export class AdminMystoreComponent implements OnInit {
   GetList(num: number) {
     this.ListProduct = [];
     if (num == 1) {
+      this.Choose = 1;
       this.List = 'Product';
       this.productServices.GetAllProduct().subscribe({
         next: (listproduct) => {
@@ -80,6 +87,7 @@ export class AdminMystoreComponent implements OnInit {
         },
       });
     } else if (num == 2) {
+      this.Choose = 2;
       this.List = 'Brand';
       this.productServices.GetAllBrand().subscribe({
         next: (listbrand) => {
@@ -89,6 +97,7 @@ export class AdminMystoreComponent implements OnInit {
         },
       });
     } else if (num == 4) {
+      this.Choose = 4;
       this.List = 'NSX';
       this.productServices.GetAllNsx().subscribe({
         next: (listNsx) => {
@@ -98,6 +107,7 @@ export class AdminMystoreComponent implements OnInit {
         },
       });
     } else if (num == 5) {
+      this.Choose = 5;
       this.List = 'Category';
       this.productServices.GetCategory().subscribe({
         next: (listcategory) => {
@@ -182,20 +192,44 @@ export class AdminMystoreComponent implements OnInit {
       this.ListProduct[id - 1].Status = 'Delete';
     }
   }
-  AddProduct() {
-    this.productServices.GetAllBrand().subscribe({
-      next: (listbrand) => {
-        this.ListBrand = listbrand;
-        console.log(this.ListBrand);
-      },
-    });
+  Add() {
+    if (this.Choose == 1) {
+      this.productServices.GetAllBrand().subscribe({
+        next: (listbrand) => {
+          this.ListBrand = listbrand;
+          console.log(this.ListBrand);
+        },
+      });
+    } else if (this.Choose == 2) {
+      this.productServices.GetAllNsx().subscribe({
+        next: (listNsx) => {
+          this.ListNsx = listNsx;
+        },
+      });
+    }
     this.Num = 6;
   }
   Router(name: string, id: number) {
     this.route.navigate(['../product/', name, id]);
   }
+  Back() {
+    this.Num = this.Choose;
+  }
 
   ClickBrand(idbrand: number) {}
+  ClickNsx(idnsx: number) {
+    console.log(idnsx)
+    this.BrandAdd.nsx = idnsx;
+  }
+  AddBrand() {
+    console.log(this.BrandAdd)
+    // this.productServices.AddBrand(this.BrandAdd).subscribe({
+    //   next: (a) => {
+    //     console.log(a)
+    //   }
+    // });
+  }
+
   UploadDetailImg(e: any) {
     if (e.target.files) {
       var reader = new FileReader();

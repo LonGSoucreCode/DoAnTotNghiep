@@ -23,6 +23,10 @@ export interface brand {
   nsx_id: string;
   isActive: boolean;
 }
+export interface brandAdd {
+  brand_Name: string;
+  nsx_id: string;
+}
 export interface Nsx {
   nsx_id: string;
   nsx_Name: string;

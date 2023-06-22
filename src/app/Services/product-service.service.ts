@@ -8,6 +8,7 @@ import {
   Bill,
   BillProduct,
   brand,
+  brandAdd,
   Category,
   imageproduct,
   ListCode,
@@ -69,6 +70,11 @@ export class ProductServiceService {
   GetAllBrand(): Observable<brand[]> {
     return this.http.get<brand[]>(
       this.baseAPIurl + '/api/Brand/GetAllBrand'
+    );
+  }
+  AddBrand(brand: brandAdd): Observable<brandAdd> {
+    return this.http.get<brandAdd>(
+      this.baseAPIurl + '/api/Brand/AddBrand?name='+brand.brand_Name+'&nsx='+brand.nsx_id
     );
   }
   GetAllNsx(): Observable<Nsx[]> {

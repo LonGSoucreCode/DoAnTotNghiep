@@ -90,7 +90,7 @@ import { AdminOrderComponent } from './Admin/admin-form/admin-order/admin-order.
     AdminUserComponent,
     SearchFormComponent,
     AdminLoginComponent,
-    AdminOrderComponent,
+    AdminOrderComponent
   ],
   imports: [
     BrowserModule,
