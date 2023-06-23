@@ -114,7 +114,6 @@ export class WishlistFormComponent implements OnInit {
         product.product_id == event.idproduct &&
         product.size_id == event.idsize
       ) {
-        console.log(product);
         product.size_id = event.idsizenew;
       }
     });

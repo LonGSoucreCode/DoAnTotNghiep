@@ -10,8 +10,40 @@ export interface product {
   view_id: string;
   isActive: boolean;
 }
+export interface productAdd {
+  product_Name: string;
+  product_Price: string;
+  image_Product_id: number;
+  brand_id: number;
+  category_id: number;
+  product_Story: string;
+  sale_id: number;
+}
+export interface productUpdate{
+  product_id: number;
+  product_Name: string;
+  product_Price: string;
+  image_Product_id: number;
+  brand_id: number;
+  category_id: number;
+  product_Story: string;
+  sale_id: number;
+}
 export interface imageproduct {
   image_Product_id: string;
+  image_Product_Main: string;
+  image_Product_Detail: string;
+  image_Product_Ass: string;
+  image_Product_Cond: string;
+}
+export interface imageproducts {
+  image_Product_id: number;
+  image_Product_Main: string;
+  image_Product_Detail: string;
+  image_Product_Ass: string;
+  image_Product_Cond: string;
+}
+export interface imageproductAdd {
   image_Product_Main: string;
   image_Product_Detail: string;
   image_Product_Ass: string;
@@ -25,7 +57,7 @@ export interface brand {
 }
 export interface brandAdd {
   brand_Name: string;
-  nsx_id: string;
+  nsx_id: number;
 }
 export interface Nsx {
   nsx_id: string;

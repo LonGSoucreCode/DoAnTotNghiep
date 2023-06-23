@@ -80,7 +80,7 @@ export class BodyFormComponent implements OnInit {
     this.check[number] = !this.check[number];
   }
   GetCategory() {
-    this.productServices.GetCategory().subscribe({
+    this.productServices.GetAllCategory().subscribe({
       next: (category) => {
         this.CategoryList = category;
         this.CategoryList.forEach((cateroy) => {

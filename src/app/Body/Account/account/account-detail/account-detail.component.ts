@@ -21,7 +21,8 @@ export class AccountDetailComponent implements OnInit {
     credit: '',
   };
   UpdateCheck: boolean = false;
-  String: string = 'Update';
+  SaveCheck: boolean = false;
+  String: string = 'Edit';
   constructor(
     private ProductService: ProductServiceService,
     private WishlistService: WishListService
@@ -35,14 +36,29 @@ export class AccountDetailComponent implements OnInit {
       },
     });
   }
-  update() {
-    if (this.String == 'Update') {
+  Click() {
+    if (this.String == 'Edit') {
+      this.SaveCheck = true;
       this.UpdateCheck = true;
-      this.String = 'Back';
-    } else if (this.String == 'Back') {
+      this.String = 'Save';
+    } else if (this.String == 'Save') {
       this.ProductService.UpdateDetailUser(this.User).subscribe({});
+      this.WishlistService.ChangeName(
+        this.User.firstName + ' ' + this.User.lastName
+      );
       this.UpdateCheck = false;
-      this.String = 'Update';
+      this.SaveCheck = false;
+      this.String = 'Edit';
     }
+  }
+  Cancel() {
+    this.ProductService.GetUserID(this.UserID).subscribe({
+      next: (user) => {
+        this.User = user;
+      },
+    });
+    this.SaveCheck = false;
+    this.UpdateCheck = false;
+    this.String = 'Edit';
   }
 }

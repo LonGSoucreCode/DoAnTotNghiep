@@ -61,8 +61,13 @@ export class WishListService {
   private MaxSizeCheck = new BehaviorSubject<number>(this.MaxSize);
   MaxSizeCheckForm = this.MaxSizeCheck.asObservable();
 
+  NameString: string = this.String;
+  private Namebeha = new BehaviorSubject<string>(this.NameString);
+  Name = this.Namebeha.asObservable();
+
   constructor(private productServices: ProductServiceService) {
     this.UserCheck = String(sessionStorage.getItem('NameUser'));
+    this.Namebeha.next(this.UserCheck)
     if (this.UserCheck != 'null') {
       this.UserID = Number(sessionStorage.getItem('IdUser'));
       this.productServices.GetWishListAllProDuct(this.IdWishList).subscribe({
@@ -137,6 +142,9 @@ export class WishListService {
   ChangeMinMaxSize(min: number, max: number) {
     this.MinSizeCheck.next(min);
     this.MaxSizeCheck.next(max);
+  }
+  ChangeName(name: string){
+    this.Namebeha.next(name);
   }
   GetSearch(string: string) {
     this.SearchBeha.next(string);

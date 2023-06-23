@@ -34,3 +34,14 @@ input{
   font-size: 13px;
   line-height: 2;
 }
+button{
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 3px 20px;
+  background-color: white;
+  border: 1px solid #727272;
+  border-radius: 5px;
+}
+.Save{
+  margin-left: 185px;
+}

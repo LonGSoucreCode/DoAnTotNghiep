@@ -71,3 +71,29 @@ input[type="file"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.AddProduct {
+  margin-top: 20px;
+  margin-left: 450px;
+  padding: 5px 20px !important;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: white;
+}
+.UpdateProduct {
+  margin-top: 20px;
+  margin-left: 430px;
+  padding: 5px 20px !important;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+.UpdateProduct:hover {
+  opacity: 0.8;
+}
+.AddProduct:hover {
+  opacity: 0.8;
+}

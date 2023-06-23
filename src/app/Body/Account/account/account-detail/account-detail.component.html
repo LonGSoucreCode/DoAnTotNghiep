@@ -11,20 +11,51 @@
     <li><h5>Passsword</h5></li>
   </ul>
   <ul *ngIf="UpdateCheck == false">
-    <li><p>{{User.firstName}}</p></li>
-    <li><p>{{User.lastName}}</p></li>
-    <li><p>{{User.email}}@gmail.com</p></li>
-    <li><p>-{{User.phone}}-</p></li>
-    <li><p>{{User.address}}.</p></li>
+    <li>
+      <p>{{ User.firstName }}</p>
+    </li>
+    <li>
+      <p>{{ User.lastName }}</p>
+    </li>
+    <li>
+      <p>{{ User.email }}@gmail.com</p>
+    </li>
+    <li>
+      <p>-{{ User.phone }}-</p>
+    </li>
+    <li>
+      <p>{{ User.address }}.</p>
+    </li>
     <li><p>******</p></li>
   </ul>
   <ul *ngIf="UpdateCheck == true">
-    <li><input type="text" [(ngModel)]="User.firstName"><i class='bx bxs-pencil'></i></li>
-    <li><input type="text" [(ngModel)]="User.lastName"><i class='bx bxs-pencil'></i></li>
-    <li><p>{{User.email}}@gmail.com</p></li>
-    <li><input type="text" [(ngModel)]="User.phone"><i class='bx bxs-pencil'></i></li>
-    <li><input type="text" [(ngModel)]="User.address"><i class='bx bxs-pencil'></i></li>
+    <li>
+      <input type="text" [(ngModel)]="User.firstName" /><i
+        class="bx bxs-pencil"
+      ></i>
+    </li>
+    <li>
+      <input type="text" [(ngModel)]="User.lastName" /><i
+        class="bx bxs-pencil"
+      ></i>
+    </li>
+    <li>
+      <p>{{ User.email }}@gmail.com</p>
+    </li>
+    <li>
+      <input type="text" [(ngModel)]="User.phone" /><i
+        class="bx bxs-pencil"
+      ></i>
+    </li>
+    <li>
+      <input type="text" [(ngModel)]="User.address" /><i
+        class="bx bxs-pencil"
+      ></i>
+    </li>
     <li><p>******</p></li>
   </ul>
 </div>
-<button (click)="update()">{{String}}</button>
+<div>
+  <button (click)="Click()">{{ String }}</button>
+  <button class="Save" (click)="Cancel()" *ngIf="SaveCheck == true">Cancel</button>
+</div>

@@ -49,7 +49,8 @@ export class HeaderComponent implements OnInit {
       this.BagCount = c;
     });
     if (this.UserCheck != 'null') {
-      this.NameUser = sessionStorage.getItem('NameUser');
+      this.WishListService.Name.subscribe((n) => {this.NameUser = n})
+      // this.NameUser = sessionStorage.getItem('NameUser');
       this.UserID = sessionStorage.getItem('IdUser');
       this.WishListId = sessionStorage.getItem('IdWishList');
       this.BagId = sessionStorage.getItem('BagId');

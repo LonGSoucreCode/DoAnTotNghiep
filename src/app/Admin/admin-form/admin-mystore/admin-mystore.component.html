@@ -15,12 +15,12 @@
       <thead>
         <tr>
           <th *ngFor="let code of ListCode">{{ code.list_name }}</th>
+          <th *ngIf="Num > 1">Edit</th>
         </tr>
       </thead>
       <tbody *ngIf="Num == 1">
         <tr
           *ngFor="let product of ListProduct"
-          (click)="Router(product.product_Name, product.product_id)"
         >
           <td>{{ product.id }}</td>
           <td>
@@ -31,9 +31,9 @@
           <td>{{ product.brand }}</td>
           <td>High-top</td>
           <td>
-            <span class="status Active">{{ product.Status }}</span>
+            <span class="status {{ product.Status }}" (click)="DeleteRestoreProduct(product.product_id,product.id)">{{ product.Status }}</span>
           </td>
-          <td class="See">See</td>
+          <td><i class="bx bx-pencil" (click)="EditProduct(product)"></i></td>
         </tr>
       </tbody>
       <tbody *ngIf="Num == 2">
@@ -42,7 +42,20 @@
           <td>{{ brand.brand_Name }}</td>
           <td>{{ brand.nsx }}</td>
           <td>
-            <span class="status Active">{{ brand.Status }}</span>
+            <span class="status {{ brand.Status }}">{{ brand.Status }}</span>
+          </td>
+          <td><i class="bx bx-pencil" (click)="EditBrand(brand)"></i></td>
+          <td *ngIf="brand.Status == 'Active'">
+            <i
+              class="bx bx-trash-alt"
+              (click)="DeleteBrand(brand.brand_id, brand.id)"
+            ></i>
+          </td>
+          <td *ngIf="brand.Status == 'Delete'">
+            <i
+              class="bx bx-refresh"
+              (click)="RestoreBrand(brand.brand_id, brand.id)"
+            ></i>
           </td>
         </tr>
       </tbody>
@@ -51,7 +64,7 @@
           <td>{{ nsx.id }}</td>
           <td>{{ nsx.nsx_Name }}</td>
           <td>
-            <span class="status Active">{{ nsx.Status }}</span>
+            <span class="status {{ nsx.Status }}">{{ nsx.Status }}</span>
           </td>
         </tr>
       </tbody>
@@ -68,44 +81,63 @@
   </div>
 </div>
 
-
 <div class="Form" *ngIf="Num > 5 && Choose == 1">
   <div class="Info">
     <p>Name</p>
-    <input type="text" placeholder="Product Name" />
+    <input type="text" placeholder="Product Name" [(ngModel)]="ProductAdd.product_Name"/>
     <p>Price</p>
-    <input type="text" placeholder="Product Name" />
+    <input type="text" placeholder="Product Price" [(ngModel)]="ProductAdd.product_Price"/>
     <p>Brand</p>
-    <select>
+    <select [(ngModel)]="ProductAdd.brand_id">
       <option></option>
-      <option *ngFor="let brand of ListBrand" (click)="ClickBrand(brand.brand_id)">{{brand.brand_Name}}</option>
+      <option *ngFor="let brand of ListBrand" [value]="brand.brand_id">{{ brand.brand_Name }}</option>
     </select>
     <p>Category</p>
-    <select>
+    <select [(ngModel)]="ProductAdd.category_id">
       <option></option>
-      <option>USA</option>
+      <option *ngFor="let category of ListCategory" [value]="category.category_id">
+        {{ category.category_Name }}
+      </option>
     </select>
+    <button class="AddProduct" (click)="AddProduct()" *ngIf="EditCheck == false">Add</button>
+    <button class="UpdateProduct" (click)="UpdateProduct()" *ngIf="EditCheck == true">Update</button>
   </div>
   <div class="Img">
     <div>
       <p>Main</p>
       <img [src]="img.image_Product_Main" alt="" />
-      <input type="file" (change)="UploadMainImg($event)"/>
+      <input
+        type="file"
+        (change)="UploadMainImg($event)"
+        *ngIf="img.image_Product_Main == ''"
+      />
     </div>
     <div>
       <p>Detail</p>
       <img [src]="img.image_Product_Detail" alt="" />
-      <input type="file" (change)="UploadDetailImg($event)" *ngIf="img.image_Product_Detail == ''"/>
+      <input
+        type="file"
+        (change)="UploadDetailImg($event)"
+        *ngIf="img.image_Product_Detail == ''"
+      />
     </div>
     <div>
       <p>Ass</p>
       <img [src]="img.image_Product_Ass" alt="" />
-      <input type="file" (change)="UploadAssImg($event)" *ngIf="img.image_Product_Ass == ''"/>
+      <input
+        type="file"
+        (change)="UploadAssImg($event)"
+        *ngIf="img.image_Product_Ass == ''"
+      />
     </div>
     <div>
       <p>Cond</p>
       <img [src]="img.image_Product_Cond" alt="" />
-      <input type="file" (change)="UploadCondImg($event)" *ngIf="img.image_Product_Cond == ''"/>
+      <input
+        type="file"
+        (change)="UploadCondImg($event)"
+        *ngIf="img.image_Product_Cond == ''"
+      />
     </div>
   </div>
 </div>
@@ -113,13 +145,20 @@
 <div class="Form" *ngIf="Num > 5 && Choose == 2">
   <div class="Info">
     <p>Brand Name</p>
-    <input type="text" placeholder="Product Name" [(ngModel)]="BrandAdd.brand_Name"/>
+    <input
+      type="text"
+      placeholder="Brand Name"
+      [(ngModel)]="BrandAdd.brand_Name"
+    />
     <p>Nsx</p>
-    <select>
+    <select [(ngModel)]="BrandAdd.nsx_id">
       <option></option>
-      <option *ngFor="let nsx of ListNsx" (click)="ClickNsx(nsx.nsx_id)">{{nsx.nsx_Name}}</option>
+      <option *ngFor="let nsx of ListNsx" [value]="nsx.nsx_id">
+        {{ nsx.nsx_Name }}
+      </option>
     </select>
-    <p (click)="AddBrand()">Add</p>
+    <button class="AddProduct" (click)="AddBrand()" *ngIf="EditCheck == false">Add</button>
+    <button class="UpdateProduct" (click)="UpdateBrand()" *ngIf="EditCheck == true">Update</button>
   </div>
 </div>
 <div class="Head" *ngIf="Num > 5">

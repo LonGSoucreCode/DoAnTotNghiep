@@ -87,6 +87,5 @@ export class AccountOrderandreturnComponent implements OnInit {
   }
   See(id: number) {
     this.BillCheck[id] = !this.BillCheck[id];
-    console.log(this.BillCheck[id]);
   }
 }

@@ -15,8 +15,8 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
   type2: string = 'password';
   User: User = {
     user_id: '',
-    Email: 'dieudo452',
-    password: '145678923',
+    Email: '',
+    password: '',
     firstName: '',
     lastName: '',
     passwordcheck: '',

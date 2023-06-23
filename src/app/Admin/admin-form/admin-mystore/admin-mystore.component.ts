@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -5,7 +6,9 @@ import {
   ListCode,
   Nsx,
   brand,
+  brandAdd,
   imageproduct,
+  imageproductAdd,
   product,
 } from 'src/app/Model/product.model';
 import { WishListService } from 'src/app/Services/WishList.service';
@@ -24,6 +27,16 @@ export class AdminMystoreComponent implements OnInit {
     image_Product_Ass: '',
     image_Product_Cond: '',
   };
+  ImgAdd: imageproductAdd = {
+    image_Product_Main: '',
+    image_Product_Detail: '',
+    image_Product_Ass: '',
+    image_Product_Cond: '',
+  };
+  MainImg!: File;
+  DetailImg!: File;
+  AssImg!: File;
+  CondImg!: File;
   List: string = '';
   Num: number = 0;
   ListProduct: any[] = [];
@@ -57,18 +70,39 @@ export class AdminMystoreComponent implements OnInit {
     category_Name: '',
     Status: '',
   };
-  BrandAdd: any = {
+  ProductAdd: any = {
+    product_Name: '',
+    product_Price: '',
+    image_Product_id: 0,
+    brand_id: 0,
+    category_id: 0,
+    product_Story: 'null',
+    sale_id: 0,
+  };
+  ProductUpdate: any = {
+    product_id: 0,
+    product_Name: '',
+    product_Price: '',
+    image_Product_id: 0,
+    brand_id: 0,
+    category_id: 0,
+    product_Story: '',
+    sale_id: 0,
+  };
+  BrandAdd: brandAdd = {
     brand_Name: '',
-    nsx: 0,
+    nsx_id: 0,
   };
   Choose: number = 1;
   ListBrand: any[] = [];
+  ListCategory: any[] = [];
   ListCode: ListCode[] = [];
-  http: any;
+  EditCheck: boolean = false;
   constructor(
     private WishlistService: WishListService,
     private productServices: ProductServiceService,
-    private route: Router
+    private route: Router,
+    private http: HttpClient
   ) {}
   ngOnInit(): void {
     this.WishlistService.ChangeAdmin(1);
@@ -86,7 +120,16 @@ export class AdminMystoreComponent implements OnInit {
           }
         },
       });
-    } else if (num == 2) {
+      this.productServices.GetAllImgProduct().subscribe({
+        next: (listimg) => {
+          this.ProductAdd.image_Product_id = listimg.length;
+          this.ImgAdd.image_Product_Main = String(listimg.length + 1);
+          this.ImgAdd.image_Product_Detail = String(listimg.length + 1);
+          this.ImgAdd.image_Product_Ass = String(listimg.length + 1);
+          this.ImgAdd.image_Product_Cond = String(listimg.length + 1);
+        },
+      });
+    } else if (num == 2 && this.Choose != 2) {
       this.Choose = 2;
       this.List = 'Brand';
       this.productServices.GetAllBrand().subscribe({
@@ -109,7 +152,7 @@ export class AdminMystoreComponent implements OnInit {
     } else if (num == 5) {
       this.Choose = 5;
       this.List = 'Category';
-      this.productServices.GetCategory().subscribe({
+      this.productServices.GetAllCategory().subscribe({
         next: (listcategory) => {
           for (var i = 0; i < listcategory.length; i++) {
             this.GetCategory(listcategory[i], i);
@@ -148,7 +191,7 @@ export class AdminMystoreComponent implements OnInit {
   GetBrand(brand: brand, id: number) {
     this.Brand = brand;
     this.Brand.id = id + 1;
-    this.GetNSX(brand.nsx_id, Number(brand.brand_id));
+    this.GetNSX(brand.nsx_id, Number(id));
     setTimeout(() => {
       this.GetActive(brand.isActive, id + 1);
     }, 500);
@@ -181,7 +224,7 @@ export class AdminMystoreComponent implements OnInit {
   GetNSX(nsxid: string, id: number) {
     this.productServices.GetNsxByID(nsxid).subscribe({
       next: (nsx) => {
-        this.ListProduct[id - 1].nsx = nsx.nsx_Name;
+        this.ListProduct[id].nsx = nsx.nsx_Name;
       },
     });
   }
@@ -197,7 +240,11 @@ export class AdminMystoreComponent implements OnInit {
       this.productServices.GetAllBrand().subscribe({
         next: (listbrand) => {
           this.ListBrand = listbrand;
-          console.log(this.ListBrand);
+        },
+      });
+      this.productServices.GetAllCategory().subscribe({
+        next: (listcategotry) => {
+          this.ListCategory = listcategotry;
         },
       });
     } else if (this.Choose == 2) {
@@ -214,23 +261,146 @@ export class AdminMystoreComponent implements OnInit {
   }
   Back() {
     this.Num = this.Choose;
+    this.EditCheck = false;
+
   }
 
-  ClickBrand(idbrand: number) {}
-  ClickNsx(idnsx: number) {
-    console.log(idnsx)
-    this.BrandAdd.nsx = idnsx;
+  AddProduct() {
+    this.ProductAdd.image_Product_id = this.ProductAdd.image_Product_id + 1;
+    this.ProductAdd.brand_id = Number(this.ProductAdd.brand_id);
+    this.ProductAdd.category_id = Number(this.ProductAdd.category_id);
+    this.ProductAdd.sale_id = 3;
+    this.productServices.AddProduct(this.ProductAdd).subscribe({});
+    this.productServices.AddImg(this.ImgAdd).subscribe({});
+    this.UploadImage();
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
   }
+  DeleteRestoreProduct(id: number, vt: number) {
+    if (this.ListProduct[vt - 1].Status == 'Active') {
+      this.productServices.DeleteProduct(id).subscribe({
+        next: (a) => {
+          console.log(a);
+        },
+      });
+      this.ListProduct[vt - 1].Status = 'Delete';
+    } else if (this.ListProduct[vt - 1].Status == 'Delete') {
+      this.productServices.RestoreProduct(id).subscribe({
+        next: (b) => {
+          console.log(b);
+        },
+      });
+      this.ListProduct[vt - 1].Status = 'Active';
+    }
+  }
+  EditProduct(product: product) {
+    this.EditCheck = true;
+    this.ProductAdd.product_Name = product.product_Name;
+    this.ProductAdd.product_Price = product.product_Price;
+    this.ProductAdd.category_id = product.category_id;
+    this.ProductAdd.brand_id = Number(product.brand_id);
+    this.ProductUpdate = this.ProductAdd;
+    this.ProductUpdate.product_id = Number(product.product_id);
+    this.productServices.GetImgProductByID(product.image_Product_id).subscribe({
+      next: (img) => {
+        this.img.image_Product_Main = img.image_Product_Main;
+        this.img.image_Product_Detail = img.image_Product_Detail;
+        this.img.image_Product_Ass = img.image_Product_Ass;
+        this.img.image_Product_Cond = img.image_Product_Cond;
+      },
+    });
+    this.Add();
+  }
+  UpdateProduct() {
+    this.ProductUpdate.product_Price = this.ProductUpdate.product_Price.replace(
+      '$',
+      ''
+    );
+    this.productServices.UpdateProduct(this.ProductUpdate).subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
+  }
+
   AddBrand() {
-    console.log(this.BrandAdd)
-    // this.productServices.AddBrand(this.BrandAdd).subscribe({
-    //   next: (a) => {
-    //     console.log(a)
-    //   }
-    // });
+    this.productServices.AddBrand(this.BrandAdd).subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
   }
+  DeleteBrand(id: number, vt: number) {
+    this.productServices.DeleteBrand(id).subscribe({
+      next: (a) => {},
+    });
+    this.ListProduct[vt - 1].Status = 'Delete';
+  }
+  RestoreBrand(id: number, vt: number) {
+    this.productServices.RestoreBrand(id).subscribe({
+      next: (a) => {},
+    });
+    this.ListProduct[vt - 1].Status = 'Active';
+  }
+  EditBrand(brand: brandAdd) {
+    this.EditCheck = true;
+    this.BrandAdd.brand_Name = brand.brand_Name;
+    this.BrandAdd.nsx_id = brand.nsx_id;
+    this.Add();
+  }
+  UpdateBrand() {}
 
+  UploadImage() {
+    const filedata = new FormData();
+    filedata.append(
+      'image',
+      this.MainImg,
+      'P' + String(this.ProductAdd.image_Product_id)
+    );
+    this.http
+      .post(
+        'https://localhost:44323/api/ImageProduct/UpLoadImageMain',
+        filedata
+      )
+      .subscribe();
+
+    filedata.append(
+      'image',
+      this.DetailImg,
+      'P' + String(this.ProductAdd.image_Product_id)
+    );
+    this.http
+      .post(
+        'https://localhost:44323/api/ImageProduct/UpLoadImageDetail',
+        filedata
+      )
+      .subscribe();
+
+    filedata.append(
+      'image',
+      this.AssImg,
+      'P' + String(this.ProductAdd.image_Product_id)
+    );
+    this.http
+      .post('https://localhost:44323/api/ImageProduct/UpLoadImageAss', filedata)
+      .subscribe();
+
+    filedata.append(
+      'image',
+      this.CondImg,
+      'P' + String(this.ProductAdd.image_Product_id)
+    );
+    this.http
+      .post(
+        'https://localhost:44323/api/ImageProduct/UpLoadImageCond',
+        filedata
+      )
+      .subscribe();
+  }
   UploadDetailImg(e: any) {
+    this.DetailImg = <File>e.target.files[0];
     if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -240,6 +410,7 @@ export class AdminMystoreComponent implements OnInit {
     }
   }
   UploadAssImg(e: any) {
+    this.AssImg = <File>e.target.files[0];
     if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -249,6 +420,7 @@ export class AdminMystoreComponent implements OnInit {
     }
   }
   UploadCondImg(e: any) {
+    this.CondImg = <File>e.target.files[0];
     if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -258,27 +430,13 @@ export class AdminMystoreComponent implements OnInit {
     }
   }
   UploadMainImg(e: any) {
+    this.MainImg = <File>e.target.files[0];
     if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (
-        file.type == 'image/png' ||
-        file.type == 'image/jpeg' ||
-        file.type == 'image/webp'
-      ) {
-        const formData = new FormData();
-        formData.append('file', file);
-        this.http
-          .post(
-            'https://localhost:44323/api/ImageProduct/UpLoadImageMain',
-            formData
-          )
-          .subscribe((res: any) => {});
-        var reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = (event: any) => {
-          this.img.image_Product_Main = event.target.result;
-        };
-      }
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event: any) => {
+        this.img.image_Product_Main = event.target.result;
+      };
     }
   }
 }

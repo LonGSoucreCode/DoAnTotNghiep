@@ -16,6 +16,7 @@ import { AdminUserComponent } from './Admin/admin-form/admin-user/admin-user.com
 import { SearchFormComponent } from './search-form/search-form.component';
 import { AdminLoginComponent } from './Admin/admin-form/admin-login/admin-login.component';
 import { AdminOrderComponent } from './Admin/admin-form/admin-order/admin-order.component';
+import { TestuploadComponent } from './testupload/testupload.component';
 
 const routes: Routes = [
 
@@ -94,6 +95,11 @@ const routes: Routes = [
   {
     path: 'Admin/Login',
     component: AdminLoginComponent
+  }
+  ,
+  {
+    path: 'test',
+    component: TestuploadComponent
   }
 ];
 

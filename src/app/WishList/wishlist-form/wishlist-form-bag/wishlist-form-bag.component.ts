@@ -36,11 +36,13 @@ export class WishlistFormBagComponent implements OnInit, OnChanges {
   NameUser: any;
   ngOnChanges(changes: SimpleChanges): void {
     this.NameUser = sessionStorage.getItem('NameUser');
-    if (changes) {
-      this.Bag.bag_id = Number(sessionStorage.getItem('IdWishList'));
-      this.Bag.product_id = this.productid;
-      this.Bag.size_id = this.sizeid;
-      this.BagCheck();
+    if (this.NameUser != 'null') {
+      if (changes) {
+        this.Bag.bag_id = Number(sessionStorage.getItem('IdWishList'));
+        this.Bag.product_id = this.productid;
+        this.Bag.size_id = this.sizeid;
+        this.BagCheck();
+      }
     }
   }
   ngOnInit(): void {

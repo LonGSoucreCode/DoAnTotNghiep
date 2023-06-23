@@ -33,7 +33,11 @@ export class AdminDashboardComponent implements OnInit {
       next: (listBill) => {
         this.OrderCount = listBill.length;
         var x = 0;
-        for (var i = listBill.length-5; i < listBill.length; i++) {
+        var i = 0;
+        if(i > 5){
+          i = listBill.length - 5;
+        }
+        for (i; i < listBill.length; i++) {
           if(listBill)
           this.GetBill(listBill[i], x);
           x++;

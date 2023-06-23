@@ -55,7 +55,7 @@ export class AdminUserComponent implements OnInit {
   Search() {
     if (this.SearchCheck == true) {
       this.ListUser = [];
-      if (this.search == '') {
+      if (this.search == null || this.search == '') {
         this.GetListUser();
         this.SearchCheck = false;
       } else {

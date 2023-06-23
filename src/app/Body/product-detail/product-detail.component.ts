@@ -139,7 +139,6 @@ export class ProductDetailComponent implements OnInit {
     if (this.NameUser != 'null') {
       this.productServices.GetWishListProDuct(this.WishListProduct).subscribe({
         next: (iconproduct) => {
-          console.log(iconproduct);
           if (Number(iconproduct) == -1) {
             this.IconCheck[1] = true;
             this.IconCheck[0] = false;
