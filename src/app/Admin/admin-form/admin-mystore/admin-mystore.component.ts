@@ -3,10 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   Category,
+  CategoryAdd,
+  CategoryUpdate,
   ListCode,
   Nsx,
+  NsxAdd,
+  NsxUpdate,
   brand,
   brandAdd,
+  brandUpdate,
   imageproduct,
   imageproductAdd,
   product,
@@ -47,7 +52,7 @@ export class AdminMystoreComponent implements OnInit {
     product_Price: '',
     image: '',
     brand: '',
-    category: 0,
+    category1: '',
     Status: '',
   };
   Brand: any = {
@@ -63,7 +68,6 @@ export class AdminMystoreComponent implements OnInit {
     nsx_Name: '',
     Status: '',
   };
-  ListNsx: any[] = [];
   Category: any = {
     id: 0,
     category_id: 0,
@@ -93,11 +97,34 @@ export class AdminMystoreComponent implements OnInit {
     brand_Name: '',
     nsx_id: 0,
   };
+  BrandUpdate: any = {
+    brand_id: '',
+    brand_Name: '',
+    nsx_id: '',
+  };
+
+  NsxAdd: NsxAdd = {
+    nsx_Name: '',
+  };
+  NsxUpdate: any = {
+    nsx_id: '',
+    nsx_Name: '',
+  };
+
+  CategoryAdd: CategoryAdd = {
+    category_Name: '',
+  };
+  CategoryUpdate: any = {
+    category_id: 0,
+    category_Name: '',
+  };
+
+  EditCheck: boolean = false;
   Choose: number = 1;
   ListBrand: any[] = [];
   ListCategory: any[] = [];
   ListCode: ListCode[] = [];
-  EditCheck: boolean = false;
+  ListNsx: any[] = [];
   constructor(
     private WishlistService: WishListService,
     private productServices: ProductServiceService,
@@ -129,7 +156,7 @@ export class AdminMystoreComponent implements OnInit {
           this.ImgAdd.image_Product_Cond = String(listimg.length + 1);
         },
       });
-    } else if (num == 2 && this.Choose != 2) {
+    } else if (num == 2) {
       this.Choose = 2;
       this.List = 'Brand';
       this.productServices.GetAllBrand().subscribe({
@@ -177,7 +204,6 @@ export class AdminMystoreComponent implements OnInit {
     setTimeout(() => {
       this.GetActive(category.isActive, id + 1);
     }, 500);
-    console.log(this.Category);
     this.ListProduct.push(this.Category);
   }
   GetNsx(nsx: Nsx, id: number) {
@@ -191,7 +217,7 @@ export class AdminMystoreComponent implements OnInit {
   GetBrand(brand: brand, id: number) {
     this.Brand = brand;
     this.Brand.id = id + 1;
-    this.GetNSX(brand.nsx_id, Number(id));
+    this.GetNSX(Number(brand.nsx_id), Number(id));
     setTimeout(() => {
       this.GetActive(brand.isActive, id + 1);
     }, 500);
@@ -204,8 +230,16 @@ export class AdminMystoreComponent implements OnInit {
       this.GetActive(product.isActive, id + 1);
     }, 500);
     this.GetBrandProduct(product.brand_id, Number(product.product_id));
+    this.GetCategoryProduct(product.category_id, Number(product.product_id));
     this.GetImage(product.image_Product_id, Number(product.product_id));
     this.ListProduct.push(this.Product);
+  }
+  GetCategoryProduct(categoryid: number, id: number) {
+    this.productServices.GetCategoryById(categoryid).subscribe({
+      next: (category) => {
+        this.ListProduct[id - 1].category = category.category_Name;
+      },
+    });
   }
   GetBrandProduct(brandid: string, id: number) {
     this.productServices.GetBrandByID(brandid).subscribe({
@@ -221,7 +255,7 @@ export class AdminMystoreComponent implements OnInit {
       },
     });
   }
-  GetNSX(nsxid: string, id: number) {
+  GetNSX(nsxid: number, id: number) {
     this.productServices.GetNsxByID(nsxid).subscribe({
       next: (nsx) => {
         this.ListProduct[id].nsx = nsx.nsx_Name;
@@ -262,7 +296,26 @@ export class AdminMystoreComponent implements OnInit {
   Back() {
     this.Num = this.Choose;
     this.EditCheck = false;
-
+    if (this.Choose == 1) {
+      this.ProductAdd.product_Name = '';
+      this.ProductAdd.product_Price = '';
+      this.ProductAdd.image_Product_id = 0;
+      this.ProductAdd.brand_id = 0;
+      this.ProductAdd.product_Story = '';
+      this.ProductAdd.category_id = 0;
+      this.ProductAdd.sale_id = 0;
+      this.img.image_Product_Main = '';
+      this.img.image_Product_Detail = '';
+      this.img.image_Product_Ass = '';
+      this.img.image_Product_Cond = '';
+    } else if (this.Choose == 2) {
+      this.BrandAdd.brand_Name = '';
+      this.BrandAdd.nsx_id = 0;
+    } else if (this.Choose == 4) {
+      this.NsxAdd.nsx_Name = '';
+    } else if (this.Choose == 5) {
+      this.CategoryAdd.category_Name = '';
+    }
   }
 
   AddProduct() {
@@ -280,18 +333,10 @@ export class AdminMystoreComponent implements OnInit {
   }
   DeleteRestoreProduct(id: number, vt: number) {
     if (this.ListProduct[vt - 1].Status == 'Active') {
-      this.productServices.DeleteProduct(id).subscribe({
-        next: (a) => {
-          console.log(a);
-        },
-      });
+      this.productServices.DeleteProduct(id).subscribe({});
       this.ListProduct[vt - 1].Status = 'Delete';
     } else if (this.ListProduct[vt - 1].Status == 'Delete') {
-      this.productServices.RestoreProduct(id).subscribe({
-        next: (b) => {
-          console.log(b);
-        },
-      });
+      this.productServices.RestoreProduct(id).subscribe({});
       this.ListProduct[vt - 1].Status = 'Active';
     }
   }
@@ -344,13 +389,98 @@ export class AdminMystoreComponent implements OnInit {
     });
     this.ListProduct[vt - 1].Status = 'Active';
   }
-  EditBrand(brand: brandAdd) {
+  EditBrand(brand: brandUpdate) {
     this.EditCheck = true;
     this.BrandAdd.brand_Name = brand.brand_Name;
-    this.BrandAdd.nsx_id = brand.nsx_id;
+    this.BrandAdd.nsx_id = Number(brand.nsx_id);
+    this.BrandUpdate = this.BrandAdd;
+    this.BrandUpdate.brand_id = brand.brand_id;
     this.Add();
   }
-  UpdateBrand() {}
+  UpdateBrand() {
+    this.productServices.UpdateBrand(this.BrandUpdate).subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
+  }
+
+  AddNsx() {
+    this.productServices.AddNsx(this.NsxAdd.nsx_Name).subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
+  }
+  DeleteNsx(id: number, vt: number) {
+    this.productServices.DeleteNsx(id).subscribe({
+      next: (a) => {},
+    });
+    this.ListProduct[vt - 1].Status = 'Delete';
+  }
+  RestoreNsx(id: number, vt: number) {
+    this.productServices.RestoreNsx(id).subscribe({
+      next: (a) => {},
+    });
+    this.ListProduct[vt - 1].Status = 'Active';
+  }
+  EditNsx(nsx: NsxUpdate) {
+    this.EditCheck = true;
+    this.NsxAdd.nsx_Name = nsx.nsx_Name;
+    this.NsxUpdate = this.NsxAdd;
+    this.NsxUpdate.nsx_id = nsx.nsx_id;
+    this.Add();
+  }
+  UpdateNsx() {
+    this.productServices
+      .UpdateCategory(Number(this.NsxUpdate.nsx_id), this.NsxUpdate.nsx_Name)
+      .subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
+  }
+
+  AddCategory() {
+    this.productServices
+      .AddCategory(this.CategoryAdd.category_Name)
+      .subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
+  }
+  DeleteCategory(id: number, vt: number) {
+    this.productServices.DeleteCategory(id).subscribe({
+      next: (a) => {},
+    });
+    this.ListProduct[vt - 1].Status = 'Delete';
+  }
+  RestoreCategory(id: number, vt: number) {
+    this.productServices.RestoreCategory(id).subscribe({
+      next: (a) => {},
+    });
+    this.ListProduct[vt - 1].Status = 'Active';
+  }
+  EditCategory(cate: CategoryUpdate) {
+    this.EditCheck = true;
+    this.CategoryAdd.category_Name = cate.category_Name;
+    this.CategoryUpdate = this.CategoryAdd;
+    this.CategoryUpdate.category_id = cate.category_id;
+    this.Add();
+  }
+  UpdateCategory() {
+    this.productServices
+      .UpdateCategory(
+        Number(this.CategoryUpdate.category_id),
+        this.CategoryUpdate.category_Name
+      )
+      .subscribe({});
+    setTimeout(() => {
+      this.Back();
+      this.GetList(this.Choose);
+    }, 500);
+  }
 
   UploadImage() {
     const filedata = new FormData();

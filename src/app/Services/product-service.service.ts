@@ -9,6 +9,7 @@ import {
   BillProduct,
   brand,
   brandAdd,
+  brandUpdate,
   Category,
   imageproduct,
   imageproductAdd,
@@ -46,22 +47,24 @@ export class ProductServiceService {
   }
   AddProduct(product: productAdd): Observable<productAdd> {
     return this.http.post<productAdd>(
-      this.baseAPIurl + '/api/product/addproduct',product
+      this.baseAPIurl + '/api/product/addproduct',
+      product
     );
   }
   UpdateProduct(product: productUpdate): Observable<productUpdate> {
     return this.http.post<productUpdate>(
-      this.baseAPIurl + '/api/Product/UpdateProduct',product
+      this.baseAPIurl + '/api/Product/UpdateProduct',
+      product
     );
   }
   DeleteProduct(id: number): Observable<number> {
     return this.http.get<number>(
-      this.baseAPIurl + '/api/Product/DeleteProduct?id='+id
+      this.baseAPIurl + '/api/Product/DeleteProduct?id=' + id
     );
   }
   RestoreProduct(id: number): Observable<number> {
     return this.http.get<number>(
-      this.baseAPIurl + '/api/Product/RestoreProduct?id='+id
+      this.baseAPIurl + '/api/Product/RestoreProduct?id=' + id
     );
   }
   GetSearchProduct(search: string): Observable<product[]> {
@@ -113,6 +116,12 @@ export class ProductServiceService {
         brand.nsx_id
     );
   }
+  UpdateBrand(brand: brandUpdate): Observable<number> {
+    return this.http.post<number>(
+      this.baseAPIurl + '/api/Brand/UpdateBrand',
+      brand
+    );
+  }
   DeleteBrand(id: number): Observable<number> {
     return this.http.get<number>(
       this.baseAPIurl + '/api/Brand/DeleteBrand?id=' + id
@@ -126,9 +135,24 @@ export class ProductServiceService {
   GetAllNsx(): Observable<Nsx[]> {
     return this.http.get<Nsx[]>(this.baseAPIurl + '/api/Nsx/GetAllNsx');
   }
-  GetNsxByID(id: string): Observable<Nsx> {
+  GetNsxByID(id: number): Observable<Nsx> {
     return this.http.get<Nsx>(this.baseAPIurl + '/api/Nsx/GetNsxByID' + id);
   }
+  AddNsx(name: string): Observable<Nsx> {
+    return this.http.get<Nsx>(this.baseAPIurl + '/api/Nsx/AddNsx?name=' + name);
+  }
+  UpdateNsx(id: number, name: string): Observable<Nsx> {
+    return this.http.get<Nsx>(
+      this.baseAPIurl + '/api/Nsx/UpdateNsx?id=' + id + '&name=' + name
+    );
+  }
+  DeleteNsx(id: number): Observable<Nsx> {
+    return this.http.get<Nsx>(this.baseAPIurl + '/api/Nsx/DeleteNsx?id=' + id);
+  }
+  RestoreNsx(id: number): Observable<Nsx> {
+    return this.http.get<Nsx>(this.baseAPIurl + '/api/Nsx/RestoreNsx?id=' + id);
+  }
+
   Login(user: User): Observable<number> {
     return this.http.post<number>(this.baseAPIurl + '/api/User/GetUser', user);
   }
@@ -291,6 +315,26 @@ export class ProductServiceService {
       this.baseAPIurl + '/api/Category/GetCategory'
     );
   }
+  GetCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(
+      this.baseAPIurl + '/api/Category/GetCategoryById?id=' + id
+    );
+  }
+  AddCategory(name: string): Observable<Category> {
+    return this.http.get<Category>(this.baseAPIurl + '/api/Category/AddCategory?name=' + name);
+  }
+  UpdateCategory(id: number, name: string): Observable<Category> {
+    return this.http.get<Category>(
+      this.baseAPIurl + '/api/Category/UpdateCategory?id=' + id + '&name=' + name
+    );
+  }
+  DeleteCategory(id: number): Observable<Nsx> {
+    return this.http.get<Nsx>(this.baseAPIurl + '/api/Category/DeleteCategory?id=' + id);
+  }
+  RestoreCategory(id: number): Observable<Nsx> {
+    return this.http.get<Nsx>(this.baseAPIurl + '/api/Category/RestoreCategory?id=0' + id);
+  }
+
 
   CreateBill(Bill: Bill): Observable<Bill> {
     return this.http.post<Bill>(this.baseAPIurl + '/api/Bill/AddBill', Bill);

@@ -203,7 +203,7 @@ export class BagFormComponent implements OnInit {
       this.OrderCheck = false;
       this.CancelBill = true;
       this.String = 'Save and Continue';
-    } else if (string == 'Go To Cost') {
+    } else if (string == 'Go To COD') {
       this.OrderCheck = true;
       this.CancelBill = true;
       this.String = 'Save and Continue';
@@ -215,7 +215,7 @@ export class BagFormComponent implements OnInit {
         if (this.Credit < Number(this.Bill.bill_Total)) {
           alert('So Du Khong Du');
           this.Cancel();
-          this.String = 'Go To Cost';
+          this.String = 'Go To COD';
         } else {
           this.CancelBill = false;
           this.String = 'Done';

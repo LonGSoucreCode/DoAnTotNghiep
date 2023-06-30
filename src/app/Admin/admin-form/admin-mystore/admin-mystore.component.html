@@ -7,7 +7,6 @@
       <p (click)="ChangeList(4)">Nsx</p>
       <p (click)="ChangeList(5)">Category</p>
       <p (click)="Add()">+</p>
-      <p>-</p>
       <i class="bx bx-search"></i>
       <i class="bx bx-filter"></i>
     </div>
@@ -29,7 +28,8 @@
           <td>{{ product.product_Name }}</td>
           <td>{{ product.product_Price }}</td>
           <td>{{ product.brand }}</td>
-          <td>High-top</td>
+          <!-- <td>{{ product.category }}</td> -->
+          <td>High-Top</td>
           <td>
             <span class="status {{ product.Status }}" (click)="DeleteRestoreProduct(product.product_id,product.id)">{{ product.Status }}</span>
           </td>
@@ -66,6 +66,19 @@
           <td>
             <span class="status {{ nsx.Status }}">{{ nsx.Status }}</span>
           </td>
+          <td><i class="bx bx-pencil" (click)="EditNsx(nsx)"></i></td>
+          <td *ngIf="nsx.Status == 'Active'">
+            <i
+              class="bx bx-trash-alt"
+              (click)="DeleteNsx(nsx.nsx_id, nsx.id)"
+            ></i>
+          </td>
+          <td *ngIf="nsx.Status == 'Delete'">
+            <i
+              class="bx bx-refresh"
+              (click)="RestoreNsx(nsx.nsx_id,nsx.id)"
+            ></i>
+          </td>
         </tr>
       </tbody>
       <tbody *ngIf="Num == 5">
@@ -73,7 +86,20 @@
           <td>{{ category.id }}</td>
           <td>{{ category.category_Name }}</td>
           <td>
-            <span class="status Active">{{ category.Status }}</span>
+            <span class="status {{ category.Status }}">{{ category.Status }}</span>
+          </td>
+          <td><i class="bx bx-pencil" (click)="EditCategory(category)"></i></td>
+          <td *ngIf="category.Status == 'Active'">
+            <i
+              class="bx bx-trash-alt"
+              (click)="DeleteCategory(category.category_id,category.id)"
+            ></i>
+          </td>
+          <td *ngIf="category.Status == 'Delete'">
+            <i
+              class="bx bx-refresh"
+              (click)="RestoreCategory(category.category_id,category.id)"
+            ></i>
           </td>
         </tr>
       </tbody>
@@ -161,6 +187,33 @@
     <button class="UpdateProduct" (click)="UpdateBrand()" *ngIf="EditCheck == true">Update</button>
   </div>
 </div>
+
+<div class="Form" *ngIf="Num > 5 && Choose == 4">
+  <div class="Info">
+    <p>Nsx Name</p>
+    <input
+      type="text"
+      placeholder="Nsx Name"
+      [(ngModel)]="NsxAdd.nsx_Name"
+    />
+    <button class="AddProduct" (click)="AddNsx()" *ngIf="EditCheck == false">Add</button>
+    <button class="UpdateProduct" (click)="UpdateNsx()" *ngIf="EditCheck == true">Update</button>
+  </div>
+</div>
+
+<div class="Form" *ngIf="Num > 5 && Choose == 5">
+  <div class="Info">
+    <p>Category Name</p>
+    <input
+      type="text"
+      placeholder="Category Name"
+      [(ngModel)]="CategoryAdd.category_Name"
+    />
+    <button class="AddProduct" (click)="AddCategory()" *ngIf="EditCheck == false">Add</button>
+    <button class="UpdateProduct" (click)="UpdateCategory()" *ngIf="EditCheck == true">Update</button>
+  </div>
+</div>
+
 <div class="Head" *ngIf="Num > 5">
   <p (click)="Back()">Back</p>
 </div>

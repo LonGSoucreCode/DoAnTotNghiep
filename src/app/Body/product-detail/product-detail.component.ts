@@ -44,12 +44,12 @@ export class ProductDetailComponent implements OnInit {
     brand_id: '',
     brand_Name: '',
     nsx_id: '',
-    isActive: false
+    isActive: false,
   };
   Nsx: Nsx = {
     nsx_id: '',
     nsx_Name: '',
-    isActive: false
+    isActive: false,
   };
 
   DetailDelivery: boolean[] = [];
@@ -226,11 +226,13 @@ export class ProductDetailComponent implements OnInit {
           this.productServices.GetBrandByID(this.product.brand_id).subscribe({
             next: (brand) => {
               this.brand = brand;
-              this.productServices.GetNsxByID(this.brand.nsx_id).subscribe({
-                next: (nsx) => {
-                  this.Nsx = nsx;
-                },
-              });
+              this.productServices
+                .GetNsxByID(Number(this.brand.nsx_id))
+                .subscribe({
+                  next: (nsx) => {
+                    this.Nsx = nsx;
+                  },
+                });
             },
           });
       },
@@ -263,12 +265,16 @@ export class ProductDetailComponent implements OnInit {
   }
   AddBag(paraphrase: string) {
     if (paraphrase == 'Add To Bag') {
-      this.BagProduct.bag_id = Number(sessionStorage.getItem('IdBag'));
-      this.BagProduct.quality = 1;
-      this.productServices.AddProductInBag(this.BagProduct).subscribe();
-      this.BagButton.paraphrase = 'In Your Bag';
-      this.BagCount++;
-      this.WishListService.BagUpdate(this.BagCount);
+      if (this.NameUser == 'null') {
+        this.WishListService.ChangeLoginCheck(false);
+      } else {
+        this.BagProduct.bag_id = Number(sessionStorage.getItem('IdBag'));
+        this.BagProduct.quality = 1;
+        this.productServices.AddProductInBag(this.BagProduct).subscribe();
+        this.BagButton.paraphrase = 'In Your Bag';
+        this.BagCount++;
+        this.WishListService.BagUpdate(this.BagCount);
+      }
     } else if (paraphrase == 'In Your Bag') {
       this.router.navigate(['Bag']);
     }

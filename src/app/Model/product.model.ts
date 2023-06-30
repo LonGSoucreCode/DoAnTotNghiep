@@ -55,6 +55,11 @@ export interface brand {
   nsx_id: string;
   isActive: boolean;
 }
+export interface brandUpdate {
+  brand_id: string;
+  brand_Name: string;
+  nsx_id: string;
+}
 export interface brandAdd {
   brand_Name: string;
   nsx_id: number;
@@ -63,6 +68,13 @@ export interface Nsx {
   nsx_id: string;
   nsx_Name: string;
   isActive: boolean;
+}
+export interface NsxAdd {
+  nsx_Name: string;
+}
+export interface NsxUpdate {
+  nsx_id: string;
+  nsx_Name: string;
 }
 export interface User {
   user_id: string;
@@ -140,6 +152,14 @@ export interface Category {
   category_id: number;
   category_Name: string;
   isActive: boolean;
+}
+
+export interface CategoryAdd {
+  category_Name: string;
+}
+export interface CategoryUpdate {
+  category_id: number;
+  category_Name: string;
 }
 export interface CTSizeOut {
   SizeID: number;

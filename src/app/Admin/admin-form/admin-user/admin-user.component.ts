@@ -20,6 +20,7 @@ export class AdminUserComponent implements OnInit {
     address: '',
     credit: '',
     Status: '',
+    role: '',
   };
   SearchCheck: boolean = false;
   SortCheck: boolean = true;
@@ -42,8 +43,16 @@ export class AdminUserComponent implements OnInit {
     this.User.id = id + 1;
     setTimeout(() => {
       this.GetActive(user.isActive, user.id);
+      this.GetRole(user.role_id,user.id)
     }, 500);
     this.ListUser.push(this.User);
+  }
+  GetRole(role: number, id: number) {
+    if (role == 1) {
+      this.ListUser[id - 1].role = 'Admin';
+    } else if(role == 2){
+      this.ListUser[id - 1].role = 'User';
+    }
   }
   GetActive(active: boolean, id: number) {
     if (active == true) {

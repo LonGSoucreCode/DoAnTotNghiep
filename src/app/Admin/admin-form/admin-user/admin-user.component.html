@@ -10,6 +10,7 @@
       <thead>
         <tr>
           <th *ngFor="let code of ListCode">{{code.list_name}}</th>
+          <th>Role</th>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +23,8 @@
           <td>{{user.address}}</td>
           <td>${{user.credit}}</td>
           <td><span class="status {{user.Status}}">{{user.Status}}</span></td>
-          <td><i class='bx bx-pencil'></i></td>
+          <td>{{user.role}}</td>
+          <!-- <td><i class='bx bx-pencil'></i></td> -->
         </tr>
       </tbody>
     </table>

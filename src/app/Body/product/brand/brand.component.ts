@@ -27,7 +27,7 @@ export class BrandComponent implements OnInit {
     this.productServices.GetBrandByID(this.id).subscribe({
       next: (brand) => {
         this.brand = brand;
-        this.productServices.GetNsxByID(this.brand.nsx_id).subscribe({
+        this.productServices.GetNsxByID(Number(this.brand.nsx_id)).subscribe({
           next: (nsx) => {
             this.Nsx = nsx;
           },
